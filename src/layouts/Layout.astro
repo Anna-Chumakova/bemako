@@ -1,3 +1,6 @@
+---
+import Logo from '../components/Logo.astro';
+---
 <!doctype html>
 <html lang="en">
 	<head>
@@ -9,8 +12,17 @@
 		<title>Astro Basics</title>
 	</head>
 	<body>
-		<slot />
-	</body>
+	<header>
+		<nav>
+			<a href="/" class="logo-link">
+				<Logo />
+				<span class="brand-name">be<span>mako</span></span>
+			</a>
+		</nav>
+	</header>
+
+	<slot />
+</body>
 </html>
 
 <style>
@@ -37,5 +49,25 @@ body {
 
 h1, h2, h3 {
 	color: var(--mako-cyan);
+}
+header {
+  padding: 1.5rem 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.logo-link {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  text-decoration: none;
+  color: white;
+  font-weight: 700;
+  font-size: 1.5rem;
+  letter-spacing: -1px;
+}
+
+.brand-name span {
+  color: var(--mako-cyan);
 }
 </style>

@@ -1,0 +1,75 @@
+---
+/* 
+  Logo Component: Be Mako (Anna Chumakova)
+  Refined Vector Geometry: Shark Fin "A" + Enclosing "C"
+*/
+---
+<div class="logo-container">
+  <svg 
+    viewBox="0 0 92 69" 
+    fill="none" 
+    xmlns="http://www.w3.org/2000/svg" 
+    class="mako-svg-final"
+  >
+    <defs>
+      <filter id="neon-glow" x="-50%" y="-50%" width="200%" height="200%">
+        <feGaussianBlur stdDeviation="2.5" result="blur" />
+        <feFlood flood-color="#00f3ff" flood-opacity="0.6" result="color" />
+        <feComposite in="color" in2="blur" operator="in" result="glow" />
+        <feMerge>
+          <feMergeNode in="glow" />
+          <feMergeNode in="SourceGraphic" />
+        </feMerge>
+      </filter>
+    </defs>
+
+    <g filter="url(#neon-glow)">
+     
+      <path 
+        d="M28.9161 20.6596L1.41613 66.6596C17.2818 57.5051 26.8292 53.6178 45.4161 49.6596C45.7284 55.8223 44.1831 58.3043 40.4161 62.1596C49.1763 59.2479 53.2695 56.7786 57.9161 49.6596C67.7523 49.6061 72.4523 48.8245 78.9161 45.6596L72.9161 42.6596C76.8939 42.2057 79.294 42.4034 83.9161 43.6596L90.4161 38.6596C76.597 32.4111 68.3239 29.7798 51.4161 28.6596C45.1698 14.6978 39.6068 8.75824 26.4161 1.15959C29.6171 9.03147 30.2937 13.3159 28.9161 20.6596Z" 
+        fill="#0a1a1d" 
+        stroke="#00f3ff" 
+        stroke-width="0.5"
+        mask="url(#shark-mask)"
+      />
+
+     
+      <path 
+        d="M19.4161 52.6596L43.9161 44.1596L35.9161 25.6596L19.4161 52.6596Z" 
+        fill="#0a1a1d" 
+        stroke="#00f3ff" 
+        stroke-width="0.5" 
+      />
+
+      
+      <g stroke="#00f3ff" stroke-width="0.5" fill="#0a1a1d">
+        <path d="M89.9161 22.1596C75.8658 9.80557 67.1782 9.46583 50.4161 19.1596L54.9161 25.6596C65.9634 18.1509 72.3171 18.7052 83.9161 27.6596L89.9161 22.1596Z" />
+        <path d="M83.4161 52.6596C74.9102 60.1964 69.2103 60.7149 57.4161 55.1596L51.4161 60.6596C68.9247 69.9191 77.328 69.0384 89.9161 57.1596L83.4161 52.6596Z" />
+      </g>
+    </g>
+  </svg>
+</div>
+
+<style>
+  .logo-container {
+    padding: 30px;
+    display: inline-block;
+  }
+  .mako-svg-final {
+    width: 120px;
+    overflow: visible;
+ 
+  }
+  /* Добавляем мерцание только на контуры */
+  path {
+  
+    transition: all 0.3s ease;
+  }
+  .logo-container:hover path {
+    stroke-width: 2px;
+    filter: brightness(1.5);
+  }
+  .mako-svg-final path {
+  animation: neon-pulse 2s infinite ease-in-out;
+}
+</style>
