@@ -1,0 +1,94 @@
+---
+/* Компонент текстового логотипа с кастомной "а" */
+---
+<div class="brand-name-container">
+  <span class="be">be</span>
+
+<span class="m">M</span>
+
+ 
+
+<span class="ko">ako</span>
+<div class="a-wrapper">
+    
+    <!-- <svg  viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M67 98.9618H99L76 54.9618L1.5 98.9618H55L64 77.4618L67 98.9618Z" fill="#00f3ff"/>
+<path d="M72.5 49.4618L8 86.4618L47 19.4618L85 0.961807L72.5 39.9618V49.4618Z" fill="#00f3ff"/>
+</svg> -->
+<svg  viewBox="0 0 39 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M37.0166 1.08792C21.0966 9.16618 13.3034 16.1464 1.01665 32.0879H37.0166C26.8766 30.687 26.598 24.1935 37.0166 1.08792Z" fill="#00f3ff"/>
+</svg>
+
+
+</div> 
+
+</div>
+
+<style>
+  .brand-name-container {
+    display: inline-flex;
+    align-items: baseline; /* Выравнивание по линии шрифта */
+    font-family: 'Inter', sans-serif; /* Или твой основной шрифт */
+    font-weight: 800;
+    font-size: 48px; /* Регулируй размер здесь */
+    line-height: 1;
+    color: #00f3ff;
+  }
+
+  .be {
+    color: var(--mako-text);
+    margin-right: 0.15em;
+  }
+
+  .a-wrapper {
+    display: inline-block;
+    width: 0.85em; /* Ограничиваем ширину буквы */
+    height: 0.7em; /* Ограничиваем высоту до строчной буквы */
+    /* margin: 0 0.02em; */
+    
+
+    position: relative;
+    left: -3px;
+    /* Создаем 3D пространство (чем меньше число, тем сильнее эффект) */
+    perspective: 1000px; 
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .a-wrapper svg {
+    position: absolute;
+    bottom: -0.05em; Чуть опускаем, чтобы "села" на строку
+    
+    width: 110%;
+    height: 110%;
+    filter: drop-shadow(0 0 8px rgba(0, 243, 255, 0.5));
+   /* Фиксируем основание плавника, чтобы он "раскачивался" от корня */
+    transform-origin: bottom center;
+    transform-style: preserve-3d;
+    
+    /* 6 секунд — оптимально, чтобы движение не было суетливым */
+    animation: infinity-tilt 5s ease-in-out infinite;
+   
+  }
+    @keyframes infinity-tilt {
+    0%, 100% {
+      /* Исходное положение: чуть наклонен назад и вбок */
+      transform: rotateY(-10deg) rotateZ(-3deg) rotateX(0deg);
+    }
+    
+    25% {
+      /* Плавник плавно разворачивается ребром к нам и наклоняется в одну сторону */
+      transform: rotateY(15deg) rotateZ(5deg) rotateX(5deg);
+    }
+
+    50% {
+      /* Проходим через центр с небольшим отклонением */
+      transform: rotateY(0deg) rotateZ(-5deg) rotateX(-5deg);
+    }
+
+    75% {
+      /* Разворот в другую сторону */
+      transform: rotateY(-15deg) rotateZ(3deg) rotateX(5deg);
+    }
+  }
+</style>

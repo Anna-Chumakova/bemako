@@ -1,0 +1,120 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { projects } from '../../data/projects.js';
+
+// 1. Эта функция говорит Astro, какие именно страницы нужно сгенерировать при сборке
+export async function getStaticPaths() {
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project }, // Передаем все данные проекта внутрь страницы как props
+  }));
+}
+
+// 2. Получаем данные текущего проекта
+const { project } = Astro.props;
+---
+
+<Layout title={`${project.title} | Be Mako Case Study`}>
+    <div class="case-container">
+        
+        <!-- Ссылка назад на главную -->
+        <a href="/#work" class="back-link">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            Back to Portfolio
+        </a>
+
+        <!-- Хедер кейса -->
+        <header class="case-header">
+            <div class="case-badge">{project.badge}</div>
+            <h1>{project.title}</h1>
+            <p class="case-intro">{project.shortDesc}</p>
+        </header>
+
+        <hr class="divider" />
+
+        <!-- Главный контент кейса -->
+        <article class="case-content" set:html={project.fullContent}>
+            <!-- Astro сам безопасно вставит сюда HTML-верстку из поля fullContent -->
+        </article>
+
+    </div>
+</Layout>
+
+<style>
+    .case-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 4rem 1.5rem;
+    }
+    
+    .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--mako-cyan);
+        text-decoration: none;
+        font-family: monospace;
+        font-size: 0.9rem;
+        margin-bottom: 3rem;
+        transition: transform 0.2s ease;
+    }
+    .back-link:hover {
+        transform: translateX(-4px);
+    }
+
+    .case-header h1 {
+        font-size: clamp(2rem, 5vw, 3rem);
+        color: #fff;
+        margin: 1rem 0 1.5rem;
+        font-weight: 800;
+        line-height: 1.2;
+    }
+    .case-badge {
+        display: inline-block;
+        font-family: monospace;
+        font-size: 0.8rem;
+        color: var(--mako-cyan);
+        border: 1px solid rgba(0, 240, 255, 0.3);
+        padding: 0.25rem 0.75rem;
+        border-radius: 2px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    .case-intro {
+        font-size: 1.2rem;
+        line-height: 1.6;
+        color: var(--mako-text);
+        opacity: 0.9;
+    }
+
+    .divider {
+        border: 0;
+        height: 1px;
+        background: rgba(255, 255, 255, 0.1);
+        margin: 3rem 0;
+    }
+
+    /* Стилизация внутренностей статьи (селектор :global нужен, так как HTML вставляется динамически) */
+    .case-content :global(p) {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: var(--mako-text);
+        margin-bottom: 1.5rem;
+    }
+    .case-content :global(h3) {
+        color: #fff;
+        font-size: 1.5rem;
+        margin: 2.5rem 0 1rem;
+        font-weight: 700;
+    }
+    .case-content :global(ul) {
+        margin-bottom: 1.5rem;
+        padding-left: 1.25rem;
+    }
+    .case-content :global(li) {
+        font-size: 1.1rem;
+        color: var(--mako-text);
+        line-height: 1.6;
+        margin-bottom: 0.5rem;
+    }
+</style>

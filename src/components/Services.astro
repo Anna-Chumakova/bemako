@@ -1,0 +1,112 @@
+---
+import { servicesData } from '../data/services.js';
+---
+
+<section id="services" class="services-section">
+    <h2 class="section-title">Core Capabilities</h2>
+    
+    <div class="services-grid">
+        {servicesData.map((service) => (
+            <a href={`/services/${service.slug}`} class="service-card-link">
+                <div class="service-card">
+                    <div class="service-icon">{service.icon}</div>
+                    <h3>{service.title}</h3>
+                    <p>{service.shortDesc}</p>
+                    <div class="service-action">
+                        Learn More 
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </div>
+                </div>
+            </a>
+        ))}
+    </div>
+</section>
+
+<style>
+    .services-section {
+        padding: var(--section-gap) 0 2rem;
+    }
+    .section-title {
+        font-size: 1.75rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: #fff;
+        margin-bottom: 3rem;
+        position: relative;
+        display: inline-block;
+    }
+    .section-title::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        width: 40px;
+        height: 2px;
+        background: var(--mako-cyan);
+    }
+    .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+    }
+
+    .service-card-link {
+        text-decoration: none !important;
+        color: inherit !important;
+        display: block;
+    }
+
+    .service-card-link h3,
+    .service-card-link p,
+    .service-card-link div {
+        text-decoration: none !important;
+    }
+
+    .service-card {
+        background: rgba(255, 255, 255, 0.01);
+        border: 1px solid rgba(255, 255, 255, 0.03);
+        padding: 2.5rem 2rem;
+        border-radius: 4px;
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .service-card-link:hover .service-card {
+        border-color: rgba(0, 240, 255, 0.25);
+        background: rgba(0, 240, 255, 0.008);
+        transform: translateY(-5px);
+    }
+
+    .service-icon {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+    }
+    .service-card h3 {
+        color: #fff;
+        font-size: 1.25rem;
+        margin: 0 0 1rem;
+    }
+    .service-card p {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        color: var(--mako-text);
+        margin: 0 0 1.5rem;
+        flex-grow: 1;
+    }
+
+    .service-action {
+        font-family: monospace;
+        font-size: 0.85rem;
+        color: var(--mako-cyan);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-top: auto;
+        transition: gap 0.2s ease;
+    }
+    .service-card-link:hover .service-action {
+        gap: 0.8rem;
+    }
+</style>

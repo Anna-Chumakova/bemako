@@ -1,36 +1,50 @@
 ---
-
 import Layout from '../layouts/Layout.astro';
-
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import About from '../components/About.astro';
+import Work from '../components/Work.astro';
+import Services from '../components/Services.astro';
+import Contact from '../components/Contact.astro';
 ---
 
-<Layout>
-	<!-- <Welcome /> -->
-	 <main>
-	<h1>Be <span class="text-gradient">Mako</span></h1>
-	<p class="tagline">Engineering Speed // Driven by Code</p>
-</main>
+<Layout title="Be Mako | Technical SEO & Data Automation">
+    <div class="home-container">
+        
+        <section class="hero">
+            <h1>Be <span class="text-gradient">Mako</span></h1>
+            <p class="tagline">Engineering Speed // Driven by Code</p>
+        </section>
+
+        <About />
+        <Work />
+        <Services />
+        <Contact />
+
+    </div> 
+</Layout>
 
 <style>
-	main {
-		margin: auto;
-		padding: 1rem;
-		width: 800px;
-		max-width: calc(100% - 2rem);
-		text-align: center;
-		margin-top: 10rem;
-	}
-	.text-gradient {
-		color: var(--mako-cyan);
-		text-shadow: 0 0 20px rgba(0, 240, 255, 0.5);
-	}
-	.tagline {
-		font-family: monospace;
-		letter-spacing: 2px;
-		opacity: 0.8;
-	}
+    .home-container {
+        width: 100%;
+    }
+    .hero {
+        text-align: center;
+        padding: 4rem 0 4rem;
+    }
+    h1 {
+        font-size: clamp(2.5rem, 6vw, 4.5rem);
+        margin: 0 0 1rem;
+        color: #fff;
+        font-weight: 800;
+    }
+    .text-gradient {
+        color: var(--mako-cyan);
+        text-shadow: 0 0 30px rgba(0, 240, 255, 0.3);
+    }
+    .tagline {
+        font-family: monospace;
+        letter-spacing: 2px;
+        opacity: 0.8;
+        font-size: clamp(0.9rem, 2vw, 1.1rem);
+        margin: 0;
+    }
 </style>
-</Layout>

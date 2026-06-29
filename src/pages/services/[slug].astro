@@ -1,0 +1,158 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { servicesData } from '../../data/services.js';
+
+export async function getStaticPaths() {
+  return servicesData.map((service) => ({
+    params: { slug: service.slug },
+    props: { service },
+  }));
+}
+
+const { service } = Astro.props;
+---
+
+<Layout title={service.seoTitle} description={service.seoDescription}>
+    <div class="service-page-container">
+        
+        <a href="/#services" class="back-link">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            All Services
+        </a>
+
+        <header class="service-header">
+            <div class="service-page-icon">{service.icon}</div>
+            <h1>{service.title}</h1>
+            <p class="service-intro">{service.shortDesc}</p>
+        </header>
+
+        <hr class="divider" />
+
+        <article class="service-content" set:html={service.fullContent}>
+        </article>
+
+        <div class="cta-block">
+            <h3>Ready to scale your business performance?</h3>
+            <p>Let's discuss how {service.title} infrastructure can work for your project goals.</p>
+            <a href="/#contact" class="order-btn">
+                Order {service.title}
+            </a>
+        </div>
+
+    </div>
+</Layout>
+
+<style>
+    .service-page-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 4rem 1.5rem;
+    }
+    
+    .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--mako-cyan);
+        text-decoration: none;
+        font-family: monospace;
+        font-size: 0.9rem;
+        margin-bottom: 3rem;
+        transition: transform 0.2s ease;
+    }
+    .back-link:hover {
+        transform: translateX(-4px);
+    }
+
+    .service-page-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+
+    .service-header h1 {
+        font-size: clamp(2rem, 5vw, 3rem);
+        color: #fff;
+        margin: 0 0 1.5rem;
+        font-weight: 800;
+        line-height: 1.2;
+    }
+    .service-intro {
+        font-size: 1.2rem;
+        line-height: 1.6;
+        color: var(--mako-text);
+        opacity: 0.9;
+    }
+
+    .divider {
+        border: 0;
+        height: 1px;
+        background: rgba(255, 255, 255, 0.1);
+        margin: 3rem 0;
+    }
+
+    /* Стилизация контента услуги */
+    .service-content :global(p) {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: var(--mako-text);
+        margin-bottom: 1.5rem;
+    }
+    .service-content :global(h3) {
+        color: #fff;
+        font-size: 1.5rem;
+        margin: 2.5rem 0 1rem;
+        font-weight: 700;
+    }
+    .service-content :global(ul) {
+        margin-bottom: 2rem;
+        padding-left: 1.25rem;
+    }
+    .service-content :global(li) {
+        font-size: 1.1rem;
+        color: var(--mako-text);
+        line-height: 1.7;
+        margin-bottom: 0.5rem;
+    }
+
+    /* Стили для CTA-блока заказа */
+    .cta-block {
+        margin-top: 4rem;
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(0, 240, 255, 0.1);
+        padding: 3rem 2rem;
+        border-radius: 4px;
+        text-align: center;
+        position: relative;
+    }
+    .cta-block h3 {
+        color: #fff;
+        font-size: 1.5rem;
+        margin: 0 0 1rem;
+    }
+    .cta-block p {
+        color: var(--mako-text);
+        margin: 0 0 2rem;
+        font-size: 1rem;
+    }
+    .order-btn {
+        display: inline-block;
+        background: transparent;
+        color: var(--mako-cyan);
+        border: 1px solid var(--mako-cyan);
+        padding: 0.8rem 2rem;
+        font-family: monospace;
+        font-size: 0.95rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        text-decoration: none;
+        border-radius: 2px;
+        transition: all 0.3s ease;
+        box-shadow: 0 0 15px rgba(0, 240, 255, 0.1);
+    }
+    .order-btn:hover {
+        background: var(--mako-cyan);
+        color: var(--mako-bg);
+        box-shadow: 0 0 25px rgba(0, 240, 255, 0.4);
+        font-weight: 600;
+    }
+</style>

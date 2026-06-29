@@ -1,0 +1,123 @@
+---
+// 1. Импортируем встроенный компонент оптимизации изображений Astro
+import { Image } from 'astro:assets';
+
+// 2. Импортируем твой файл фотографии локально
+import profilePhoto from '../assets/my-photo.jpg'; // Укажи свое точное имя файла и расширение
+---
+
+<section id="about" class="about-section">
+    <div class="about-grid">
+        
+        <!-- Текстовая колонка -->
+        <div class="about-content">
+            <div class="code-accent">// WHO I AM</div>
+            <h2>Data-Driven Technical SEO Engineer</h2>
+            <p>
+                Hi, I'm Anya. I bridge the gap between heavy automation, clean code architectures, and aggressive organic growth. 
+                While traditional SEOs rely only on third-party platforms, I build custom automated pipelines using <strong>Node.js</strong> and <strong>AI</strong> models like Gemini to capture scale that others cannot reach.
+            </p>
+            <p>
+                Whether it’s executing a zero-traffic-loss enterprise migration to modern frameworks like <strong>Astro</strong> or launching global programmatic SEO infrastructure from scratch, my goal is simple: engineering maximum search visibility at peak technical performance.
+            </p>
+        </div>
+
+        <!-- Колонка с фото -->
+        <div class="about-image-wrapper">
+            <div class="image-frame">
+                <Image 
+                    src={profilePhoto} 
+                    alt="Anya — Technical SEO Engineer and Founder of Be Mako Studio" 
+                    width={380}
+                    height={380}
+                    loading="eager" 
+                    class="profile-img"
+                />
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<style>
+    .about-section {
+        padding: var(--section-gap) 0 2rem;
+    }
+    .about-grid {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr; /* Две колонки: текст шире, фото чуть уже */
+        gap: 3rem;
+        align-items: center;
+    }
+    
+    @media (max-width: 768px) {
+        .about-grid {
+            grid-template-columns: 1fr; /* На мобилках в одну колонку */
+            gap: 2rem;
+        }
+        .about-image-wrapper {
+            order: -1; /* Фото уходит наверх на мобильных устройствах */
+        }
+    }
+
+    .code-accent {
+        font-family: monospace;
+        color: var(--mako-cyan);
+        letter-spacing: 2px;
+        font-size: 0.85rem;
+        margin-bottom: 1rem;
+    }
+    h2 {
+        font-size: clamp(1.75rem, 4vw, 2.5rem);
+        color: #fff;
+        margin: 0 0 1.5rem;
+        font-weight: 800;
+    }
+    p {
+        font-size: clamp(0.95rem, 1.5vw, 1.05rem);
+        line-height: 1.7;
+        color: var(--mako-text);
+        margin-bottom: 1.5rem;
+    }
+    strong {
+        color: #fff;
+        font-weight: 600;
+    }
+
+    /* Стили для фото и кибер-рамки */
+    .about-image-wrapper {
+        display: flex;
+        justify-content: center;
+    }
+    .image-frame {
+        position: relative;
+        border: 1px solid rgba(0, 240, 255, 0.2);
+        padding: 10px;
+        background: rgba(255, 255, 255, 0.01);
+        border-radius: 4px;
+    }
+    /* Делаем неоновый уголок для рамки в стиле хай-тек */
+    .image-frame::before {
+        content: '';
+        position: absolute;
+        top: -1px;
+        left: -1px;
+        width: 20px;
+        height: 20px;
+        border-top: 2px solid var(--mako-cyan);
+        border-left: 2px solid var(--mako-cyan);
+    }
+    .profile-img {
+        width: 100%;
+        height: auto;
+        max-width: 380px;
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
+        border-radius: 2px;
+        filter: grayscale(20%) contrast(110%); /* Слегка стилизуем фото под общую гамму */
+        transition: filter 0.3s ease;
+    }
+    .image-frame:hover .profile-img {
+        filter: grayscale(0%) contrast(100%);
+    }
+</style>
