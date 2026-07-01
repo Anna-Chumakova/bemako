@@ -1,53 +1,154 @@
 export const servicesData = [
   {
-    slug: 'programmatic-seo',
-    icon: '⚡',
-    title: 'Programmatic SEO',
-    seoTitle: 'Programmatic SEO Services & Data Automation | Be Mako',
-    seoDescription: 'Scale your organic traffic with automated content pipelines. We build high-performance data-driven web architectures that capture thousands of high-intent keywords.',
-    shortDesc: 'Building scalable web architectures driven by data. Automating semantic keyword research and deploying thousands of high-intent pages without quality degradation.',
-    fullContent: `
-      <p>Programmatic SEO (pSEO) is not about spinning low-quality content. It is about creating high-value, database-driven pages at scale to satisfy specific user intents.</p>
-      <h3>What We Do</h3>
-      <ul>
-        <li>Custom database architecture and data scraping pipelines (Node.js).</li>
-        <li>Advanced dynamic templating inside modern frameworks like Astro.</li>
-        <li>AI-assisted content optimization using Gemini and custom LSI arrays.</li>
-      </ul>
-    `
+    slug: 'basic-seo-audit',
+    icon: '📊',
+    title: 'Basic SEO Audit',
+    price: '100 $',
+    duration: '4 hours',
+    shortDesc: 'A rapid, high-impact diagnostic of your website\'s core metrics, competitor positioning, and immediate bottlenecks holding back your search growth with a 3-month tactical roadmap.',
+    features: [
+      'Analysis of core performance metrics',
+      'Competitor landscape analysis',
+      'Identification of growth bottlenecks & constraints',
+      'Actionable 3-month tactical roadmap'
+    ],
+    tools: ['Screaming Frog', 'Ahrefs', 'Page Speed Insight', 'Rich Results Test', 'Detailed SEO'],
+    contents: [
+      {
+        category: 'General Metrics',
+        items: [
+          'Domain Rating (DR) & URL Rating (UR)',
+          'Organic Traffic & Organic Keywords Volume',
+          'Backlink Profile Quality Analysis',
+          'AI Optimization Status Check'
+        ]
+      },
+      {
+        category: 'Key Technical Notes & SEO Recommendations',
+        items: [
+          'Full Scan with Screaming Frog',
+          'Title & Description Tags Integrity',
+          'H1–H6 Heading Hierarchy',
+          'On-Page Content Analysis',
+          'Structured Data & Schema Layout'
+        ]
+      },
+      {
+        category: 'Page Load Speed',
+        items: [
+          'Mobile Version Performance & CWV',
+          'Desktop Version Performance & CWV'
+        ]
+      },
+      {
+        category: 'Comparison with Main Competitor',
+        items: [
+          'Referring Domains Gap Matrix',
+          'Domain Rating (DR) Comparison',
+          'Organic Traffic Benchmarking',
+          'Keywords in Top 3 Positions',
+          'AI Citations & Footprint Check',
+          'General Competitor Conclusion'
+        ]
+      },
+      {
+        category: 'General Conclusion & Deliverables',
+        items: [
+          'Key Diagnostic Takeaways',
+          'The Tactical Roadmap (3 Months)',
+          'What You Stand to Gain Matrix'
+        ]
+      }
+    ]
   },
   {
-    slug: 'technical-infrastructure-audits',
+    slug: 'basic-audit-market-potential',
+    icon: '📈',
+    title: 'Basic Audit + Market Potential',
+    price: '160 $',
+    duration: '6-8 hours',
+    shortDesc: 'Comprehensive basic technical diagnostic combined with deep market demand estimation based on relevant commercial intent semantic volume.',
+    features: [
+      'Analysis of core metrics & growth constraints',
+      'Competitor landscape positioning',
+      'Market potential evaluation based on relevant search volume',
+      '3-month roadmap & position-based lead forecasting'
+    ],
+    tools: ['Screaming Frog', 'Ahrefs', 'Page Speed Insight', 'Rich Results Test', 'Detailed SEO'],
+    contents: [
+      {
+        category: 'Core Modules (Basic SEO Audit)',
+        items: [
+          'Includes all components of the standard Basic Audit',
+          'Technical crawl, speed diagnostics, and competitor benchmarking'
+        ]
+      },
+      {
+        category: 'Market Potential & Semantics',
+        items: [
+          'Commercial Intent Semantic Core Extraction',
+          'Market Demand Volume Evaluation'
+        ]
+      },
+      {
+        category: 'Lead Forecasting Model',
+        items: [
+          'Expected Lead Generation Calculus mapped to Google search visibility and page ranks'
+        ]
+      }
+    ]
+  },
+  {
+    slug: 'full-technical-infrastructure-audit',
     icon: '🏗️',
-    title: 'Technical Infrastructure Audits',
-    seoTitle: 'Technical SEO Infrastructure Audits & CWV Optimization | Be Mako',
-    seoDescription: 'Deep-dive technical SEO audits for enterprise and e-commerce platforms. JavaScript rendering optimization, Core Web Vitals fixes, and log analysis.',
-    shortDesc: 'Deep-dive log analysis, JavaScript rendering optimization, Core Web Vitals debugging, and advanced crawl-budget management for complex e-commerce platforms.',
-    fullContent: `
-      <p>Modern search engines struggle with heavy JavaScript frameworks. We diagnose and fix the core structural bottlenecks that stop Googlebot from indexing your site efficiently.</p>
-      <h3>Our Audit Process</h3>
-      <ul>
-        <li>Server log analysis to track real bot behavior.</li>
-        <li>Core Web Vitals and Largest Contentful Paint (LCP) debugging.</li>
-        <li>JavaScript hydration and rendering optimization.</li>
-      </ul>
-    `
-  },
-  {
-    slug: 'safe-site-migrations',
-    icon: '🔄',
-    title: 'Safe Site Migrations',
-    seoTitle: 'Enterprise Website Migration Services & SEO Risk Management | Be Mako',
-    seoDescription: 'Migrate your website to fast, modern frameworks with zero organic traffic loss. Bulletproof URL mapping, redirect architecture, and SEO safety control.',
-    shortDesc: 'Seamlessly moving enterprise assets to fast tech stacks (Astro, Next.js). Bulletproof URL mapping, redirect logic design, and structure preservation to guarantee zero traffic loss.',
-    fullContent: `
-      <p>Changing your CMS or framework is a high-risk operation for SEO. We ensure your domain authority, rankings, and structural integrity remain 100% intact during infrastructure upgrades.</p>
-      <h3>Migration Safety Checklist</h3>
-      <ul>
-        <li>Pre-migration crawling and benchmark indexing.</li>
-        <li>Granular 1:1 redirect map planning and deployment rules.</li>
-        <li>Post-launch monitoring and instant error resolution.</li>
-      </ul>
-    `
+    title: 'Full Technical Infrastructure Audit',
+    price: '160 $',
+    duration: '6 hours',
+    shortDesc: 'Deep-dive engineering debugging. Full crawling analysis, meta-data health check, speed profiles, and a developer-ready technical assignment table for error fixing.',
+    features: [
+      'Complete technical state analysis & architecture crawl',
+      'Developer-ready Technical Task Assignment (TA) table',
+      'In-depth metadata, content hierarchy, and usability check',
+      'Actionable 3-month implementation roadmap'
+    ],
+    tools: ['Screaming Frog', 'Ahrefs', 'Page Speed Insight', 'Rich Results Test', 'Detailed SEO'],
+    contents: [
+      {
+        category: 'General Indicators & Infrastructure',
+        items: [
+          'Google Search Console (GSC) & Google Analytics (GA4) Alignment',
+          'Comprehensive Technical Errors Table with Dev-Ready TA',
+          'Security Standards & Language/Hreflang Controls',
+          'Crawling & Indexing Optimization',
+          'Sitemap.xml & Robots.txt Directives Integrity',
+          'URL Architecture & Cleanliness'
+        ]
+      },
+      {
+        category: 'Meta Data & Content Structure',
+        items: [
+          'Title Tag Performance & Optimizations',
+          'Description Tag Cleanliness',
+          'Heading Hierarchy Check (H1-H6 Integrity)',
+          'On-Page Content Depth Analysis',
+          'Images Compression & Alt Text Status',
+          'Micromarkup & Rich Snippets Implementation'
+        ]
+      },
+      {
+        category: 'Site Speed & Core Web Vitals',
+        items: [
+          'Mobile Version Performance & Bottlenecks',
+          'Desktop Version Performance Tuning'
+        ]
+      },
+      {
+        category: 'Usability & Conclusions',
+        items: [
+          'Site Usability Technical Audit',
+          'Overall Conclusion & Actionable Engineering Recommendations'
+        ]
+      }
+    ]
   }
 ];

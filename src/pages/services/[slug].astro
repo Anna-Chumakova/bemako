@@ -9,150 +9,456 @@ export async function getStaticPaths() {
   }));
 }
 
-const { service } = Astro.props;
+const service = Astro.props.service as any;
 ---
 
-<Layout title={service.seoTitle} description={service.seoDescription}>
-    <div class="service-page-container">
+<Layout title={`${service.title} Services | Be Mako`} description={service.shortDesc}>
+    <div class="service-page-wrapper">
         
-        <a href="/#services" class="back-link">
+        <a href="/#services" class="back-to-services">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-            All Services
+            Back to Capabilities
         </a>
 
-        <header class="service-header">
-            <div class="service-page-icon">{service.icon}</div>
-            <h1>{service.title}</h1>
-            <p class="service-intro">{service.shortDesc}</p>
-        </header>
+        <div class="service-hero-grid">
+            
+            <div class="service-hero-info">
+                <div class="service-badge">// SERVICE SPECIFICATION</div>
+                <h1 class="service-title-main">
+                    <span class="icon-span">{service.icon}</span> {service.title}
+                </h1>
+                <p class="service-description-text">{service.shortDesc}</p>
+                
+                <h3 class="subsection-title">What's Included:</h3>
+                <ul class="features-list">
+                    {service.features.map((feature: any) => (
+                        <li>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--mako-cyan)" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                            {feature}
+                        </li>
+                    ))}
+                </ul>
+            </div>
 
-        <hr class="divider" />
+            <div class="service-price-card">
+                <div class="price-header">Fixed Pricing</div>
+                <div class="price-value">{service.price}</div>
+                
+                <div class="meta-row">
+                    <span class="meta-label">Delivery Time:</span>
+                    <span class="meta-value">{service.duration}</span>
+                </div>
+                <div class="meta-row">
+                    <span class="meta-label">Developer-Ready:</span>
+                    <span class="meta-value">Yes (Jira/Trello TA)</span>
+                </div>
 
-        <article class="service-content" set:html={service.fullContent}>
-        </article>
+                <a href="/#contact" class="service-order-button">
+                    Book This Service
+                </a>
+                <p class="price-footer-note">*Fully compliant with modern Google core updates.</p>
+            </div>
+        </div>
 
-        <div class="cta-block">
-            <h3>Ready to scale your business performance?</h3>
-            <p>Let's discuss how {service.title} infrastructure can work for your project goals.</p>
-            <a href="/#contact" class="order-btn">
-                Order {service.title}
-            </a>
+        <div class="tools-section">
+            <h4 class="tools-title">Infrastructure & Tooling Stack</h4>
+            <div class="tools-tags-grid">
+                {service.tools.map((tool: any) => (
+                    <span class="tool-tag">{tool}</span>
+                ))}
+            </div>
+        </div>
+
+        <hr class="section-divider" />
+
+        <div class="report-structure-section">
+            <div class="section-heading-block">
+                <h2>Audit Deliverables & Report Architecture</h2>
+                <p>Every audit is a deep data-driven document. Click on the categories below to explore the exact technical roadmap elements included in the final report.</p>
+            </div>
+
+            <div class="accordions-container">
+                {service.contents.map((content: any) => (
+                    <details class="seo-accordion">
+                        <summary class="accordion-header">
+                            <span class="accordion-title-text">{content.category}</span>
+                            <span class="accordion-arrow">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                            </span>
+                        </summary>
+                        <div class="accordion-content-body">
+                            <ul class="accordion-items-list">
+                                {content.items.map((item: any) => (
+                                    <li>{item}</li>
+                                ))}
+                            </ul>
+                        </div>
+                    </details>
+                ))}
+            </div>
+        </div>
+
+        <div class="bottom-cta-box">
+            <h3>Need a custom infrastructure approach?</h3>
+            <p>If your enterprise platform or dynamic JS app requires a tailored audit setup, let’s schedule a brief tech alignment call.</p>
+            <a href="/#contact" class="cta-secondary-btn">Get Custom Quote</a>
         </div>
 
     </div>
 </Layout>
 
 <style>
-    .service-page-container {
-        max-width: 800px;
+    .service-page-wrapper {
+        max-width: 1100px;
         margin: 0 auto;
-        padding: 4rem 1.5rem;
+        padding: 4rem 1.5rem 6rem;
     }
-    
-    .back-link {
+
+    .back-to-services {
         display: inline-flex;
         align-items: center;
         gap: 0.5rem;
         color: var(--mako-cyan);
         text-decoration: none;
         font-family: monospace;
-        font-size: 0.9rem;
+        font-size: 0.85rem;
         margin-bottom: 3rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
         transition: transform 0.2s ease;
     }
-    .back-link:hover {
+    .back-to-services:hover {
         transform: translateX(-4px);
     }
 
-    .service-page-icon {
-        font-size: 3rem;
+    /* Сетка главного экрана */
+    .service-hero-grid {
+        display: grid;
+        grid-template-columns: 1fr 380px;
+        gap: 4rem;
+        align-items: start;
+    }
+
+    @media (max-width: 900px) {
+        .service-hero-grid {
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
+        }
+    }
+
+    .service-badge {
+        font-family: monospace;
+        color: var(--mako-cyan);
+        font-size: 0.85rem;
+        letter-spacing: 2px;
         margin-bottom: 1rem;
     }
 
-    .service-header h1 {
-        font-size: clamp(2rem, 5vw, 3rem);
+    .service-title-main {
+        font-size: clamp(2rem, 4vw, 2.75rem);
         color: #fff;
         margin: 0 0 1.5rem;
         font-weight: 800;
-        line-height: 1.2;
-    }
-    .service-intro {
-        font-size: 1.2rem;
-        line-height: 1.6;
-        color: var(--mako-text);
-        opacity: 0.9;
+        line-height: 1.15;
     }
 
-    .divider {
+    .icon-span {
+        margin-right: 0.5rem;
+    }
+
+    .service-description-text {
+        font-size: 1.15rem;
+        line-height: 1.7;
+        color: var(--mako-text);
+        opacity: 0.85;
+        margin-bottom: 2rem;
+    }
+
+    .subsection-title {
+        color: #fff;
+        font-size: 1.1rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 1rem;
+    }
+
+    .features-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    .features-list li {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.75rem;
+        color: var(--mako-text);
+        font-size: 1.05rem;
+        line-height: 1.5;
+        margin-bottom: 0.8rem;
+    }
+    .features-list li svg {
+        margin-top: 3px;
+        flex-shrink: 0;
+    }
+
+    /* Виджет цены */
+    .service-price-card {
+        background: rgba(255, 255, 255, 0.01);
+        border: 1px solid rgba(255, 255, 255, 0.04);
+        border-top: 3px solid var(--mako-cyan);
+        padding: 2.5rem 2rem;
+        border-radius: 4px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .price-header {
+        font-family: monospace;
+        color: var(--mako-text);
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        opacity: 0.6;
+    }
+
+    .price-value {
+        font-size: 3.5rem;
+        font-weight: 800;
+        color: #fff;
+        margin: 0.5rem 0 2rem;
+    }
+
+    .meta-row {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.8rem 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        font-size: 0.95rem;
+    }
+    .meta-label {
+        color: var(--mako-text);
+        opacity: 0.6;
+    }
+    .meta-value {
+        color: #fff;
+        font-weight: 500;
+    }
+
+    .service-order-button {
+        display: block;
+        text-align: center;
+        background: var(--mako-cyan);
+        color: var(--mako-bg);
+        text-decoration: none;
+        padding: 1rem;
+        font-family: monospace;
+        text-transform: uppercase;
+        font-weight: 700;
+        letter-spacing: 1px;
+        margin-top: 2rem;
+        border-radius: 2px;
+        transition: all 0.3s ease;
+    }
+    .service-order-button:hover {
+        background: #fff;
+        box-shadow: 0 0 25px rgba(0, 240, 255, 0.3);
+    }
+
+    .price-footer-note {
+        font-size: 0.75rem;
+        color: var(--mako-text);
+        opacity: 0.4;
+        text-align: center;
+        margin: 1rem 0 0;
+    }
+
+    /* Блок тегов инструментов */
+    .tools-section {
+        margin-top: 4rem;
+    }
+    .tools-title {
+        font-family: monospace;
+        color: var(--mako-text);
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-bottom: 1rem;
+        opacity: 0.5;
+    }
+    .tools-tags-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+    }
+    .tool-tag {
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        padding: 0.4rem 1rem;
+        font-size: 0.9rem;
+        color: var(--mako-text);
+        border-radius: 3px;
+        transition: all 0.2s ease;
+    }
+    .tool-tag:hover {
+        border-color: var(--mako-cyan);
+        color: #fff;
+    }
+
+    .section-divider {
         border: 0;
         height: 1px;
-        background: rgba(255, 255, 255, 0.1);
-        margin: 3rem 0;
+        background: rgba(255, 255, 255, 0.05);
+        margin: 5rem 0;
     }
 
-    /* Стилизация контента услуги */
-    .service-content :global(p) {
-        font-size: 1.1rem;
-        line-height: 1.8;
-        color: var(--mako-text);
-        margin-bottom: 1.5rem;
+    /* Секция Аккордеонов структуры отчета */
+    .section-heading-block {
+        margin-bottom: 3rem;
+        max-width: 700px;
     }
-    .service-content :global(h3) {
+    .section-heading-block h2 {
+        font-size: 1.75rem;
         color: #fff;
-        font-size: 1.5rem;
-        margin: 2.5rem 0 1rem;
+        margin: 0 0 1rem;
         font-weight: 700;
     }
-    .service-content :global(ul) {
-        margin-bottom: 2rem;
-        padding-left: 1.25rem;
-    }
-    .service-content :global(li) {
-        font-size: 1.1rem;
+    .section-heading-block p {
         color: var(--mako-text);
-        line-height: 1.7;
-        margin-bottom: 0.5rem;
+        line-height: 1.6;
+        opacity: 0.7;
     }
 
-    /* Стили для CTA-блока заказа */
-    .cta-block {
-        margin-top: 4rem;
-        background: rgba(255, 255, 255, 0.02);
-        border: 1px solid rgba(0, 240, 255, 0.1);
-        padding: 3rem 2rem;
+    .accordions-container {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    /* Нативный SEO-аккордеон */
+    .seo-accordion {
+        background: rgba(255, 255, 255, 0.01);
+        border: 1px solid rgba(255, 255, 255, 0.03);
+        border-radius: 4px;
+        overflow: hidden;
+        transition: border-color 0.3s ease;
+    }
+    
+    /* Убираем дефолтную стрелочку браузера */
+    .seo-accordion summary::-webkit-details-marker {
+        display: none;
+    }
+    
+    .accordion-header {
+        list-style: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.5rem 2rem;
+        cursor: pointer;
+        user-select: none;
+    }
+    
+    .accordion-title-text {
+        color: #fff;
+        font-size: 1.15rem;
+        font-weight: 600;
+    }
+
+    .accordion-arrow {
+        color: var(--mako-text);
+        opacity: 0.5;
+        transition: transform 0.3s ease;
+        display: flex;
+        align-items: center;
+    }
+
+    /* Стили при раскрытом состоянии */
+    .seo-accordion[open] {
+        border-color: rgba(0, 240, 255, 0.15);
+        background: rgba(0, 240, 255, 0.003);
+    }
+    .seo-accordion[open] .accordion-arrow {
+        transform: rotate(180deg);
+        color: var(--mako-cyan);
+        opacity: 1;
+    }
+
+    .accordion-content-body {
+        padding: 0 2rem 2rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.02);
+        animation: fadeSlideIn 0.3s ease-out;
+    }
+
+    .accordion-items-list {
+        list-style: none;
+        padding: 1.5rem 0 0;
+        margin: 0;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1rem;
+    }
+
+    .accordion-items-list li {
+        color: var(--mako-text);
+        font-size: 1rem;
+        position: relative;
+        padding-left: 1.25rem;
+        opacity: 0.85;
+    }
+    /* Маленький бирюзовый квадратик перед пунктами */
+    .accordion-items-list li::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 9px;
+        width: 5px;
+        height: 5px;
+        background: var(--mako-cyan);
+        opacity: 0.7;
+    }
+
+    /* Анимация плавного появления контента */
+    @keyframes fadeSlideIn {
+        from { opacity: 0; transform: translateY(-5px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Финальный CTA блок */
+    .bottom-cta-box {
+        margin-top: 6rem;
+        background: linear-gradient(135deg, rgba(255,255,255,0.01) 0%, rgba(0,240,255,0.01) 100%);
+        border: 1px solid rgba(255,255,255,0.03);
+        padding: 3.5rem 2rem;
         border-radius: 4px;
         text-align: center;
-        position: relative;
     }
-    .cta-block h3 {
+    .bottom-cta-box h3 {
         color: #fff;
         font-size: 1.5rem;
         margin: 0 0 1rem;
     }
-    .cta-block p {
+    .bottom-cta-box p {
         color: var(--mako-text);
-        margin: 0 0 2rem;
+        max-width: 600px;
+        margin: 0 auto 2rem;
         font-size: 1rem;
+        opacity: 0.7;
+        line-height: 1.6;
     }
-    .order-btn {
+    .cta-secondary-btn {
         display: inline-block;
-        background: transparent;
-        color: var(--mako-cyan);
-        border: 1px solid var(--mako-cyan);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        color: #fff;
+        text-decoration: none;
         padding: 0.8rem 2rem;
         font-family: monospace;
-        font-size: 0.95rem;
+        font-size: 0.9rem;
         text-transform: uppercase;
         letter-spacing: 1px;
-        text-decoration: none;
-        border-radius: 2px;
         transition: all 0.3s ease;
-        box-shadow: 0 0 15px rgba(0, 240, 255, 0.1);
     }
-    .order-btn:hover {
-        background: var(--mako-cyan);
-        color: var(--mako-bg);
-        box-shadow: 0 0 25px rgba(0, 240, 255, 0.4);
-        font-weight: 600;
+    .cta-secondary-btn:hover {
+        border-color: var(--mako-cyan);
+        color: var(--mako-cyan);
+        box-shadow: 0 0 20px rgba(0, 240, 255, 0.1);
     }
 </style>

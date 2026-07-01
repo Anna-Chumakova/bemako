@@ -13,8 +13,8 @@ const {
 } = Astro.props;
 
 // Автоматически формируем чистый канонический URL текущей страницы
-const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://bemako.com'); 
-// 💡 Замени 'https://bemako.com' на свой настоящий будущий домен, когда он появится!
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://be-mako.com'); 
+
 ---
 
 <!doctype html>
@@ -73,11 +73,16 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://bemako.c
         const menu = document.querySelector('.nav-links');
         const links = document.querySelectorAll('.nav-links a');
 
+        // Если кнопки или меню нет на текущей странице, прерываем выполнение
         if (!btn || !menu) return;
 
-        // Очищаем старые слушатели клика (важно для Astro)
-        const newBtn = btn.cloneNode(true);
-        btn.parentNode.replaceChild(newBtn, btn);
+        // Важно: явно указываем, что родительский элемент — это HTMLElement
+        const parent = btn.parentNode as HTMLElement;
+        if (!parent) return;
+
+        // Очищаем старые слушатели клика (важно для Astro View Transitions)
+        const newBtn = btn.cloneNode(true) as HTMLElement; // Приводим к HTMLElement
+        parent.replaceChild(newBtn, btn);
 
         // Функция закрытия меню
         const closeMenu = () => {
@@ -161,6 +166,15 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://bemako.c
         border-bottom: 1px solid rgba(0, 240, 255, 0.1);
         display: flex;
         align-items: center;
+        background-image: linear-gradient(
+        to bottom,
+        rgba(0, 240, 255, 0.12) 0%,   /* Насыщенный бирюзовый у самого верха */
+        rgba(0, 180, 200, 0.05) 25%,  /* Плавный переход */
+        rgba(11, 17, 23, 0) 60%       /* Полное растворение в темноте сайта к середине страницы */
+    );
+    
+    /* Страховка, чтобы градиент не повторялся, если секция большая */
+    background-repeat: no-repeat;
     }
 
     .nav-container {
