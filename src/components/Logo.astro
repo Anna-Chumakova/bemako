@@ -1,5 +1,5 @@
 ---
-import BrandName from './BrandName.astro';
+
 ---
 <div class="logo-container">
   <!-- 1. ГРАФИКА: АКУЛА -->
@@ -22,42 +22,103 @@ import BrandName from './BrandName.astro';
       </g>
     </svg>
   </div>
-
-  <!-- 2. ТЕКСТ: BE MAKO -->
-  <BrandName />
+  <div class="brand-name-container">
+    <span class="be">Be</span>
+    <span class="ko">Mako</span>
+    <div class="a-wrapper">
+      <svg  viewBox="0 0 39 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M37.0166 1.08792C21.0966 9.16618 13.3034 16.1464 1.01665 32.0879H37.0166C26.8766 30.687 26.598 24.1935 37.0166 1.08792Z" fill="#00f3ff"/>
+      </svg>
+    </div> 
+  </div>
+</div>
 
 <style>
+.logo-container {
+  display: flex;
+  align-items: center; 
+  justify-content: center;
+  padding: 0; /* Убираем все внутренние отступы */
+  position: relative;
+  /* Даем небольшой запас сверху ВСЕМУ хедеру, чтобы акула не вылезала за пределы экрана */
+  margin-top: 40px; 
+}
+@media (max-width: 768px){
   .logo-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.8rem; /* Расстояние между акулой и текстом */
-    padding: 2rem;
+    margin-top: 20px; 
   }
-
-  .shark-box {
-    width: 50px; /* Размер акулы */
-    height: auto;
-  }
-
-  .shark-svg {
-    width: 100%;
-    height: 100%;
-    overflow: visible;
-    padding: 2rem;
-  }
-
+}
   
 
+.shark-box {
+  position: absolute;
+  /* Акула позиционируется относительно текста brand-name-container */
+  top: -59px; /* Сдвиг строго вверх. Регулируй этот параметр, чтобы поднять/опустить акулу */
+  right: 13px; /* Сдвиг вправо. Регулируй, чтобы сместить ее ближе к букве 'o' или плавнику */
+  width: 105px; 
+  height: auto;
+  /* z-index: 2; */
+  pointer-events: none; /* Чтобы акула не перехватывала клики с текста */
+} 
 
+.shark-svg {
+  width: 105px;
+  height: auto;
+  overflow: visible;
+}
 
-  /* Анимация плавного свечения */
-  path {
-    animation: simple-pulse 4s infinite ease-in-out;
-  }
+.brand-name-container {
+  display: flex;
+  align-items: center; 
+  font-weight: 800;
+  font-size: 48px; 
+  line-height: 1;
+  color: #00f3ff;
+  position: relative;
+  z-index: 1;
+}
 
-  @keyframes simple-pulse {
-    0%, 100% { opacity: 1; filter: drop-shadow(0 0 2px rgba(0,240,255,0.2)); }
-    50% { opacity: 0.9; filter: drop-shadow(0 0 5px rgba(0,240,255,0.5)); }
-  }
+.be {
+  color: white;
+  margin-right: 0.15em;
+}
+
+.a-wrapper {
+  display: inline-flex;
+  align-items: center;
+  width: 0.85em; 
+  height: 0.7em; 
+  position: relative;
+  left: -3px;
+  perspective: 1000px; 
+}
+
+.a-wrapper svg {
+  position: absolute;
+  bottom: -0.05em; 
+  width: 110%;
+  height: 110%;
+  filter: drop-shadow(0 0 8px rgba(0, 243, 255, 0.5));
+  transform-origin: bottom center;
+  transform-style: preserve-3d;
+  animation: infinity-tilt 5s ease-in-out infinite;
+}
+
+/* Анимации */
+path {
+  animation: simple-pulse 4s infinite ease-in-out;
+}
+
+@keyframes simple-pulse {
+  0%, 100% { opacity: 1; filter: drop-shadow(0 0 2px rgba(0,240,255,0.2)); }
+  50% { opacity: 0.9; filter: drop-shadow(0 0 5px rgba(0,240,255,0.5)); }
+}
+
+@keyframes infinity-tilt {
+  0%, 100% { transform: rotateY(-10deg) rotateZ(-3deg) rotateX(0deg); }
+  25% { transform: rotateY(15deg) rotateZ(5deg) rotateX(5deg); }
+  50% { transform: rotateY(0deg) rotateZ(-5deg) rotateX(-5deg); }
+  75% { transform: rotateY(-15deg) rotateZ(3deg) rotateX(5deg); }
+}
 </style>
+

@@ -291,17 +291,18 @@ const service = Astro.props.service as any;
     }
     .tool-tag {
         background: rgba(255, 255, 255, 0.02);
-        border: 1px solid rgba(255, 255, 255, 0.05);
+        border: 1px solid var(--mako-cyan);
         padding: 0.4rem 1rem;
         font-size: 0.9rem;
-        color: var(--mako-text);
+        /* color: var(--mako-text); */
+        color: #fff;
         border-radius: 3px;
         transition: all 0.2s ease;
     }
-    .tool-tag:hover {
+    /* .tool-tag:hover {
         border-color: var(--mako-cyan);
         color: #fff;
-    }
+    } */
 
     .section-divider {
         border: 0;

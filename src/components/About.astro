@@ -4,14 +4,61 @@ import { Image } from 'astro:assets';
 
 // 2. Импортируем твой файл фотографии локально
 import profilePhoto from '../assets/my-photo.jpg'; // Укажи свое точное имя файла и расширение
+
 ---
 
+<!-- JSON-LD Схема для поисковых роботов -->
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Аня",
+    "alternateName": "Anya SEO",
+    "jobTitle": "Data-Driven Technical SEO Engineer",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Be Mako Studio",
+      "url": "https://be-mako.com" 
+    },
+    "description": "Технический SEO-инженер и основатель студии Be Mako. Специализируюсь на автоматизации процессов на Node.js, AI-интеграциях и enterprise-миграциях сайтов на стек Astro.",
+    "url": "https://be-mako.com",
+    "knowsAbout": [
+      "Technical SEO",
+      "Search Engine Optimization",
+      "Astro Framework",
+      "Node.js Automation",
+      "AI Engineering",
+      "Programmatic SEO",
+      "Core Web Vitals Optimization"
+    ],
+    "alumniOf": [
+      {
+        "@type": "EducationalOrganization",
+        "name": "Название университета или платформы, где училась"
+      }
+    ],
+    "hasCredential": [
+      {
+        "@type": "EducationalOccupationalCredential",
+        "name": "Название твоего главного диплома/сертификата",
+        "credentialCategory": "Certification"
+      }
+    ],
+    "sameAs": [
+      "https://github.com/твой-гитхаб",
+      "https://linkedin.com/in/твой-линкендин",
+      "https://t.me/твой-телеграм"
+    ]
+  }
+</script>
+
 <section id="about" class="about-section">
+     <div class="code-accent">// WHO I AM</div>
     <div class="about-grid">
-        
+       
         <!-- Текстовая колонка -->
         <div class="about-content">
-            <div class="code-accent">// WHO I AM</div>
+            
             <h2>Data-Driven Technical SEO Engineer</h2>
             <p>
                 Hi, I'm Anya. I bridge the gap between heavy automation, clean code architectures, and aggressive organic growth. 
@@ -23,7 +70,9 @@ import profilePhoto from '../assets/my-photo.jpg'; // Укажи свое точ
         </div>
 
         <!-- Колонка с фото -->
+        
         <div class="about-image-wrapper">
+            
             <div class="image-frame">
                 <Image 
                     src={profilePhoto} 
@@ -32,6 +81,7 @@ import profilePhoto from '../assets/my-photo.jpg'; // Укажи свое точ
                     height={380}
                     loading="eager" 
                     class="profile-img"
+                    
                 />
             </div>
         </div>
@@ -45,18 +95,18 @@ import profilePhoto from '../assets/my-photo.jpg'; // Укажи свое точ
     }
     .about-grid {
         display: grid;
-        grid-template-columns: 1.2fr 0.8fr; /* Две колонки: текст шире, фото чуть уже */
+        grid-template-columns: 1.2fr 0.8fr;
         gap: 3rem;
         align-items: center;
     }
     
     @media (max-width: 768px) {
         .about-grid {
-            grid-template-columns: 1fr; /* На мобилках в одну колонку */
+            grid-template-columns: 1fr;
             gap: 2rem;
         }
         .about-image-wrapper {
-            order: -1; /* Фото уходит наверх на мобильных устройствах */
+            margin-top: 1rem;
         }
     }
 
@@ -84,19 +134,27 @@ import profilePhoto from '../assets/my-photo.jpg'; // Укажи свое точ
         font-weight: 600;
     }
 
-    /* Стили для фото и кибер-рамки */
+   
     .about-image-wrapper {
         display: flex;
         justify-content: center;
+        width: 100%;
     }
+    
     .image-frame {
         position: relative;
         border: 1px solid rgba(0, 240, 255, 0.2);
         padding: 10px;
         background: rgba(255, 255, 255, 0.01);
         border-radius: 4px;
+        
+        /* Жестко резервируем место на экране до загрузки картинки */
+        width: 100%;
+        max-width: 400px; /* 380px картинка + 20px суммарный padding */
+        aspect-ratio: 1 / 1; /* Браузер сразу поймет, что блок квадратный */
+        box-sizing: border-box;
     }
-    /* Делаем неоновый уголок для рамки в стиле хай-тек */
+    
     .image-frame::before {
         content: '';
         position: absolute;
@@ -107,17 +165,36 @@ import profilePhoto from '../assets/my-photo.jpg'; // Укажи свое точ
         border-top: 2px solid var(--mako-cyan);
         border-left: 2px solid var(--mako-cyan);
     }
+    
     .profile-img {
+        display: block;
         width: 100%;
-        height: auto;
+        height: 100%; /* Занимает всю внутреннюю область фрейма */
         max-width: 380px;
         aspect-ratio: 1 / 1;
         object-fit: cover;
         border-radius: 2px;
-        filter: grayscale(20%) contrast(110%); /* Слегка стилизуем фото под общую гамму */
+        filter: grayscale(20%) contrast(110%);
         transition: filter 0.3s ease;
     }
+    
     .image-frame:hover .profile-img {
         filter: grayscale(0%) contrast(100%);
     }
+    @media (max-width: 992px) {
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+    
+    /* Меняем визуальный порядок элементов через order */
+    .about-image-wrapper {
+        order: 1;      /* Картинка встает на первое место сверху */
+        margin-top: 0; /* Сбрасываем верхний маргин, теперь он не нужен */
+    }
+    
+    .about-content {
+        order: 2;      /* Текст уходит под картинку */
+    }
+}
 </style>

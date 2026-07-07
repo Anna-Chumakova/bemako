@@ -6,13 +6,29 @@ import Services from '../components/Services.astro';
 import Contact from '../components/Contact.astro';
 ---
 
-<Layout title="Be Mako | Technical SEO & Data Automation">
+<Layout title="Be Mako | Technical SEO & Data Automation" description='give your business a permanent competitive advantage'>
     <div class="home-container">
         
         <section class="hero">
-            <h1 class="title">Anna <span class="text-gradient">Chumakova</span><br>
+            <div class="hero-content">
+                <h1 class="title">Anna <span class="text-gradient">Chumakova</span><br>
             <span class="tagline">SEO SERVICES // WEB MASTER</span>
             </h1>
+        
+            <p class="hero-description">
+                The Mako is the fastest shark in the ocean. And I’m telling you: Be Mako.
+            </p>
+            <p>
+                While you are second-guessing whether your website even needs SEO, your competitors are already stealing your clients. 
+                In modern search, victory belongs to those who act with precision, aggression, and superior tech. 
+                This website is a living proof of next-gen SEO in action. 
+                I architect search infrastructure at the intersection of automation, AI, and flawless code to give your business a permanent competitive advantage.
+            </p>
+            <a href="#contact" class="mako-btn code-accent">
+            <span>GET IN TOUCH</span>
+            <span class="btn-glow"></span>
+            </a>
+            </div>
              
         </section>
 
@@ -45,8 +61,90 @@ import Contact from '../components/Contact.astro';
     .tagline {
         font-family: monospace;
         letter-spacing: 2px;
-        opacity: 0.8;
-        font-size: clamp(0.9rem, 2vw, 1.1rem);
+        /* opacity: 0.8; */
+        font-size: clamp(1.5rem, 2.5vw + 0.5rem, 1.8rem);
+        line-height: 1.5;
         margin: 0;
+        color: #fff;
     }
+</style>
+<style>
+    /* Контейнер для выравнивания */
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 900px; /* Чтобы текст не растягивался во всю ширину экрана и легко читался */
+    margin: 0 auto;
+}
+
+/* Стилизация кнопки */
+.mako-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 2.5rem;
+    margin-top: 2.5rem;
+    color: #0B1117; /* Темный текст на неоновом фоне смотрится максимально контрастно и дорого */
+    background: #00F0FF;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    text-decoration: none !important;
+    text-transform: uppercase;
+    font-weight: 700;
+    border-radius: 4px;
+    border: 1px solid #00F0FF;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    
+    /* Базовый неоновый теневой шлейф */
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.35), 
+                0 0 30px rgba(0, 240, 255, 0.1);
+}
+
+/* Текст кнопки приподнимаем над эффектами */
+.mako-btn span:not(.btn-glow) {
+    position: relative;
+    z-index: 2;
+}
+
+/* Внутреннее свечение (блик при наведении) */
+.mako-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.4),
+        transparent
+    );
+    transition: 0.5s;
+    z-index: 1;
+}
+
+/* Эффект при наведении (Hover) */
+.mako-btn:hover {
+    color: #fff;
+    background: transparent; /* Переключаемся на контурный неон */
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.6), 
+                0 0 40px rgba(0, 240, 255, 0.3),
+                inset 0 0 15px rgba(0, 240, 255, 0.4);
+    text-shadow: 0 0 5px rgba(0, 240, 255, 0.5);
+}
+
+.mako-btn:hover::before {
+    left: 100%;
+}
+
+/* Активное состояние (клик) */
+.mako-btn:active {
+    transform: scale(0.98);
+    box-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+}
 </style>
