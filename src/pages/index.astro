@@ -12,7 +12,7 @@ import Contact from '../components/Contact.astro';
         <section class="hero">
             <div class="hero-content">
                 <h1 class="title">Anna <span class="text-gradient">Chumakova</span><br>
-            <span class="tagline">SEO SERVICES // WEB MASTER</span>
+            <span class="tagline block">SEO SERVICES</span> <span class="tagline block">//</span> <span class="tagline block">WEB MASTER</span>
             </h1>
         
             <p class="hero-description">
@@ -21,8 +21,8 @@ import Contact from '../components/Contact.astro';
             <p>
                 While you are second-guessing whether your website even needs SEO, your competitors are already stealing your clients. 
                 In modern search, victory belongs to those who act with precision, aggression, and superior tech. 
-                This website is a living proof of next-gen SEO in action. 
-                I architect search infrastructure at the intersection of automation, AI, and flawless code to give your business a permanent competitive advantage.
+                <!-- This website is a living proof of next-gen SEO in action. 
+                I architect search infrastructure at the intersection of automation, AI, and flawless code to give your business a permanent competitive advantage. -->
             </p>
             <a href="#contact" class="mako-btn code-accent">
             <span>GET IN TOUCH</span>
@@ -67,6 +67,15 @@ import Contact from '../components/Contact.astro';
         margin: 0;
         color: #fff;
     }
+    @media (max-width: 768px) {
+   
+    .tagline {
+        font-size: clamp(0.85rem, 4vw, 1.1rem); /* Делаем шрифт адаптивным */
+        white-space: nowrap; /* Запрещаем перенос слов на новую строку */
+        letter-spacing: 1px; /* Чуть сужаем межбуквенный интервал на мобилке */
+    }
+}
+
 </style>
 <style>
     /* Контейнер для выравнивания */
