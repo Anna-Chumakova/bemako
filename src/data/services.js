@@ -1,7 +1,15 @@
 export const servicesData = [
   {
     slug: 'basic-seo-audit',
-    icon: '📊',
+    icon: `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="3" width="20" height="6" rx="1" />
+                                <rect x="2" y="15" width="20" height="6" rx="1" />
+                                <path d="M6 6h.01M6 18h.01" stroke-width="2.5" />
+                                <path d="M20 9v6M4 9v6" opacity="0.4" />
+                                <path d="M10 6h4M10 18h4" opacity="0.7" />
+                                <circle cx="12" cy="12" r="2" />
+                                <path d="M12 10v-1M12 14v1M14 12h1M10 12H9" />
+                            </svg>`,
     title: 'Basic SEO Audit',
     price: '100 $',
     duration: '4 hours',
@@ -63,7 +71,15 @@ export const servicesData = [
   },
   {
     slug: 'basic-audit-market-potential',
-    icon: '📈',
+    icon: `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M3 3v16a2 2 0 0 0 2 2h16" opacity="0.5" />
+                                <path d="M7 14l4-4 4 4 6-6" />
+                                <circle cx="7" cy="14" r="1.5" fill="currentColor" />
+                                <circle cx="11" cy="10" r="1.5" fill="currentColor" />
+                                <circle cx="15" cy="14" r="1.5" fill="currentColor" />
+                                <circle cx="21" cy="8" r="1.5" fill="currentColor" />
+                                <path d="M21 12V8h-4" opacity="0.7" />
+                            </svg>`,
     title: 'Basic Audit + Market Potential',
     price: '160 $',
     duration: '6-8 hours',
@@ -100,7 +116,12 @@ export const servicesData = [
   },
   {
     slug: 'full-technical-infrastructure-audit',
-    icon: '🏗️',
+    icon: `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="11" cy="11" r="7" />
+                                <path d="M11 8v6M8 11h6" opacity="0.4" />
+                                <path d="M16 16l5 5" />
+                                <path d="M7 14h2M10 13h2M13 11h1" opacity="0.7" stroke-width="2"/>
+                            </svg>`,
     title: 'Full Technical Infrastructure Audit',
     price: '160 $',
     duration: '6 hours',

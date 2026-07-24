@@ -25,7 +25,7 @@ const service = Astro.props.service as any;
             <div class="service-hero-info">
                 <div class="service-badge">// SERVICE SPECIFICATION</div>
                 <h1 class="service-title-main">
-                    <span class="icon-span">{service.icon}</span> {service.title}
+                    <span class="icon-span" set:html={service.icon}></span> {service.title}
                 </h1>
                 <p class="service-description-text">{service.shortDesc}</p>
                 

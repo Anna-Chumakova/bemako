@@ -9,7 +9,7 @@ import { servicesData } from '../data/services.js';
         {servicesData.map((service) => (
             <a href={`/services/${service.slug}`} class="service-card-link">
                 <div class="service-card">
-                    <div class="service-icon">{service.icon}</div>
+                    <div class="service-icon" set:html={service.icon} />
                     <h3>{service.title}</h3>
                     <p>{service.shortDesc}</p>
                     <div class="service-action">
@@ -82,6 +82,40 @@ import { servicesData } from '../data/services.js';
     .service-icon {
         font-size: 2rem;
         margin-bottom: 1.5rem;
+    }
+
+    /* Наш контейнер-квадрат для иконки */
+    .service-icon {
+        color: var(--mako-cyan); /* Задает базовый цвет для stroke="currentColor" */
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 48px;
+        height: 48px;
+        background: rgba(0, 240, 255, 0.03);
+        border: 1px solid rgba(0, 240, 255, 0.15);
+        border-radius: 6px;
+        transition: all 0.3s ease;
+    }
+
+    /* Стилизация самого SVG внутри контейнера */
+    .service-icon :global(svg) {
+        width: 24px;  /* Управляем размером иконки прямо отсюда */
+        height: 24px;
+        transition: transform 0.3s ease;
+    }
+
+    /* Эффекты при наведении на всю карточку */
+    .service-card-link:hover .service-icon {
+        background: rgba(0, 240, 255, 0.08);
+        border-color: rgba(0, 240, 255, 0.4);
+        box-shadow: 0 0 15px rgba(0, 240, 255, 0.2); /* Красивое неоновое свечение */
+    }
+
+    /* Микро-эффект для самого SVG при ховере */
+    .service-card-link:hover .service-icon :global(svg) {
+        transform: scale(1.05); /* Легкое увеличение самой иконки */
     }
     .service-card h3 {
         color: #fff;

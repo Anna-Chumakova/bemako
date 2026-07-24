@@ -3,15 +3,20 @@
 import { projects } from '../data/projects.js';
 ---
 
-<section id="work" class=" page-content portfolio-section">
+<section id="portfolio" class=" page-content portfolio-section">
     <h1 class="section-title">Featured Case Studies</h1>
     
     <div class="projects-grid">
         {projects.map((project) => (
             /* Оборачиваем карточку в ссылку на внутреннюю страницу */
-            <a href={`/work/${project.slug}`} class="project-card-link">
+            <a href={`/portfolio/${project.slug}`} class="project-card-link">
                 <div class="project-card">
                     <div class="card-badge">{project.badge}</div>
+                    {project.image && (
+                        <div class="card-image-wrapper">
+                            <img src={project.image} alt={project.title} loading="lazy" />
+                        </div>
+                    )}
                     <h3>{project.title}</h3>
                     <p>{project.shortDesc}</p>
                     <div class="read-more">
@@ -73,12 +78,12 @@ import { projects } from '../data/projects.js';
     }
     
     /* Эффект ховера теперь срабатывает при наведении на ссылку */
-    .project-card-link:hover .project-card {
+    /* .project-card-link:hover .project-card {
         transform: translateY(-5px);
         background: rgba(0, 240, 255, 0.01);
         border-color: rgba(0, 240, 255, 0.2);
         box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-    }
+    } */
     
     .card-badge {
         display: inline-block;
@@ -93,6 +98,37 @@ import { projects } from '../data/projects.js';
         letter-spacing: 1px;
         width: fit-content;
     }
+
+    /* Эффект ховера теперь срабатывает при наведении на ссылку */
+    .project-card-link:hover .project-card {
+        transform: translateY(-5px);
+        background: rgba(0, 240, 255, 0.01);
+        border-color: rgba(0, 240, 255, 0.2);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    /* --- КОНТЕЙНЕР ДЛЯ КАРТИНКИ КАРТОЧКИ --- */
+    .card-image-wrapper {
+        width: 100%;
+        height: 180px; /* Фиксированная высота для сохранения геометрии сетки */
+        overflow: hidden; /* Чтобы картинка не вылезала за скругления при увеличении */
+        border-radius: 4px;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        margin-bottom: 1.5rem; /* Отступ до заголовка h3 */
+        position: relative;
+    }
+
+    .card-image-wrapper img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Эффект легкого приближения картинки при наведении на карточку */
+    /* .project-card-link:hover .card-image-wrapper img {
+        transform: scale(1.04);
+    } */
     .project-card h3 {
         color: #fff;
         font-size: 1.25rem;

@@ -7,7 +7,8 @@ export const projects = [
     seoTitle: 'Programmatic SEO & Data Automation Case Study | Be Mako',
     seoDescription: 'Discover how we built an automated Node.js and Gemini AI pipeline to scale high-quality organic visibility for a US-based marketplace.',
     shortDesc: 'Designed an automated pipeline to scale organic visibility for a US marketplace...',
-    fullContent: `...`
+    fullContent: `...`,
+    image: '/case-g-SEO.png'
   },
   {
     slug: 'b2b-enterprise-astro-migration',
@@ -17,7 +18,8 @@ export const projects = [
     seoTitle: 'Enterprise B2B Migration to Astro: Zero Traffic Loss Case Study',
     seoDescription: 'Comprehensive breakdown of a high-scale B2B framework migration to Astro. Learn how we optimized Core Web Vitals and preserved link equity.',
     shortDesc: 'Executed a zero-traffic-loss infrastructure migration...',
-    fullContent: `...`
+    fullContent: `...`,
+    image: '/case-g-SEO.png'
   },
   {
     slug: 'local-seo-content-architecture',
@@ -27,6 +29,7 @@ export const projects = [
     seoTitle: 'Local SEO & Semantic Silo Case Study (Canada) | Be Mako',
     seoDescription: 'How we achieved a 26.2% average CTR and top-10 rankings in a hyper-competitive Canadian market using semantic silos.',
     shortDesc: 'Launched a regional digital asset from scratch...',
-    fullContent: `...`
+    fullContent: `...`, 
+    image: '/case-g-SEO.png'
   }
 ];
