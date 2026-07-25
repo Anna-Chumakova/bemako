@@ -1,0 +1,290 @@
+---
+// Для отправки писем можно использовать бесплатный Web3Forms API Key или Formspree ID.
+// Если ключа пока нет, форма работает в демо-режиме.
+const formAction = import.meta.env.PUBLIC_FORM_ACTION_URL || "https://api.web3forms.com/submit";
+const accessKey = import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY || "YOUR_ACCESS_KEY_HERE";
+---
+
+<section class="contact-section" id="contact">
+  <div class="contact-container">
+    
+    <!-- Левая колонка: Заголовок и прямые контакты -->
+    <div class="contact-info">
+      <div class="code-accent">// START A PROJECT</div>
+      <h2>Let’s Build Something Exceptional</h2>
+      <p class="contact-desc">
+        Have a project in mind, need a technical SEO audit, or planning a site migration? Drop a message and let's discuss how to scale your organic presence.
+      </p>
+
+      <div class="direct-contacts">
+        <div class="contact-item">
+          <span class="item-label">Direct Email</span>
+          <a href="mailto:hello@be-mako.com" class="item-value">hello@be-mako.com</a>
+        </div>
+        <div class="contact-item">
+          <span class="item-label">Quick Chat</span>
+          <a href="https://t.me/your_telegram" target="_blank" rel="noopener noreferrer" class="item-value telegram-link">
+            Telegram Direct ↗
+          </a>
+        </div>
+        <div class="contact-item">
+          <span class="item-label">Location / Timezone</span>
+          <span class="item-value">Europe (EEST / UTC+3) • Global Remote</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Правая колонка: Форма связи -->
+    <div class="form-wrapper">
+      <form action={formAction} method="POST" id="contact-form" class="styled-form">
+        <!-- Скрытые поля для Web3Forms -->
+        <input type="hidden" name="access_key" value={accessKey} />
+        <input type="hidden" name="subject" value="New Inquiry from Be Mako Website" />
+        <input type="hidden" name="from_name" value="Be Mako Contact Form" />
+
+        <!-- Honeypot для защиты от спама (скрыт от людей через CSS) -->
+        <input type="checkbox" name="botcheck" class="hidden-honeypot" style="display:none;" />
+
+        <div class="form-group">
+          <label for="name">Your Name <span class="req">*</span></label>
+          <input type="text" id="name" name="name" required placeholder="e.g. Alex Rivera" class="form-input" />
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email / WhatsApp / Telegram <span class="req">*</span></label>
+<input 
+  type="text" 
+  id="email" 
+  name="contact_info" 
+  required 
+  placeholder="alex@company.com or +1 234 ... / @username" 
+  class="form-input" 
+/>
+        </div>
+
+        <div class="form-group">
+          <label for="message">Project Details / Goals <span class="req">*</span></label>
+          <textarea id="message" name="message" rows="4" required placeholder="Tell me about your website, goals, or current technical challenges..." class="form-textarea"></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn" id="submit-btn">
+          <span>Send Message</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </button>
+
+        <p class="form-status" id="form-status"></p>
+      </form>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .contact-section {
+    padding: 5rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .contact-container {
+    display: flex;
+    gap: 4rem;
+    align-items: flex-start;
+  }
+
+  .contact-info {
+    flex: 1;
+  }
+
+  .form-wrapper {
+    flex: 1.2;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 8px;
+    padding: 2.5rem;
+  }
+
+  .code-accent {
+    font-family: monospace;
+    color: var(--mako-cyan, #00f0ff);
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    margin-bottom: 0.5rem;
+  }
+
+  h2 {
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    color: #fff;
+    margin: 0 0 1rem 0;
+    font-weight: 800;
+  }
+
+  .contact-desc {
+    color: #a0aec0;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+
+  .direct-contacts {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .contact-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .item-label {
+    font-size: 0.75rem;
+    font-family: monospace;
+    color: #8a99a8;
+    text-transform: uppercase;
+  }
+
+  .item-value {
+    color: #fff;
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: color 0.25s ease;
+  }
+
+  a.item-value:hover {
+    color: var(--mako-cyan, #00f0ff);
+  }
+
+  /* Стили формы */
+  .styled-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  label {
+    color: #e2e8f0;
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+
+  .req {
+    color: var(--mako-cyan, #00f0ff);
+  }
+
+  .form-input, .form-textarea {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    padding: 0.85rem 1rem;
+    color: #fff;
+    font-family: inherit;
+    font-size: 0.95rem;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    outline: none;
+  }
+
+  .form-input:focus, .form-textarea:focus {
+    border-color: var(--mako-cyan, #00f0ff);
+    box-shadow: 0 0 10px rgba(0, 240, 255, 0.15);
+  }
+
+  .form-textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+
+  /* Кнопка отправки */
+  .submit-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background: var(--mako-cyan, #00f0ff);
+    color: #0b0f19;
+    border: none;
+    padding: 1rem 1.75rem;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .submit-btn:hover {
+    background: #33f3ff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(0, 240, 255, 0.3);
+  }
+
+  .form-status {
+    font-size: 0.85rem;
+    text-align: center;
+    margin: 0;
+  }
+
+  @media (max-width: 900px) {
+    .contact-container {
+      flex-direction: column;
+      gap: 2.5rem;
+    }
+    
+    .form-wrapper {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 1.5rem;
+    }
+  }
+</style>
+
+<!-- Легкий клиентский скрипт для обработки отправки без перезагрузки -->
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const status = document.getElementById('form-status');
+  const btn = document.getElementById('submit-btn');
+
+  if (form) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!status || !btn) return;
+
+      btn.setAttribute('disabled', 'true');
+      status.style.color = '#8a99a8';
+      status.textContent = 'Sending message...';
+
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData.entries());
+
+      try {
+        const response = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+        });
+
+        if (response.ok) {
+          status.style.color = '#00f0ff';
+          status.textContent = 'Message sent! I will reply as soon as possible.';
+          form.reset();
+        } else {
+          throw new Error('Failed to send');
+        }
+      } catch (err) {
+        status.style.color = '#ff4a4a';
+        status.textContent = 'Something went wrong. Please reach out directly via Telegram or Email.';
+      } finally {
+        btn.removeAttribute('disabled');
+      }
+    });
+  }
+</script>

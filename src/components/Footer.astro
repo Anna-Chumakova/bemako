@@ -1,0 +1,288 @@
+---
+import Logo from './Logo.astro';
+import FooterLogo from './FooterLogo.astro';
+
+const currentYear = new Date().getFullYear();
+
+const navLinks = {
+  services: [
+    { name: 'SEO Optimization', href: '/services/#seo' },
+    { name: 'UX/UI Design', href: '/services/#ux-ui' },
+    { name: 'Web Development', href: '/services/#development' },
+    { name: 'SEO Audits', href: '/services/#audit' },
+  ],
+  navigation: [
+    { name: 'About', href: '#about' },
+    { name: 'Services', href: '/services' },
+    { name: 'Portfolio', href: '/portfolio' },
+    { name: 'FAQ', href: '#faq' },
+    { name: 'Contact', href: '#contact' },
+  ],
+  socials: [
+    { name: 'Email', href: 'mailto:hello@be-mako.com' },
+    { name: 'Telegram', href: 'https://t.me/yourusername' },
+    { name: 'LinkedIn', href: 'https://linkedin.com/in/yourprofile' },
+  ]
+};
+---
+
+<footer class="site-footer" itemscope itemtype="https://schema.org/WPFooter">
+  <div class="footer-container">
+    
+    <!-- Верхняя сетка с колонками -->
+    <div class="footer-top">
+      
+      <!-- Бренд и описание -->
+      <div class="footer-brand" itemscope itemtype="https://schema.org/Organization">
+        <div class="logo-wrapper">
+            <FooterLogo />
+        </div>
+        <p class="brand-desc" itemprop="description">
+          Data-driven SEO, human-centered UX design, and ultra-fast web development. Helping businesses scale search visibility and user conversion.
+        </p>
+        <div class="brand-email">
+          <a href="mailto:hello@be-mako.com" class="email-link" itemprop="email">
+            <span class="icon">✉️</span> hello@be-mako.com
+          </a>
+        </div>
+      </div>
+
+      <!-- Услуги -->
+      <div class="footer-col">
+        <h3 class="col-title">Services</h3>
+        <ul class="col-links">
+          {navLinks.services.map((link) => (
+            <li><a href={link.href}>{link.name}</a></li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Навигация -->
+      <div class="footer-col">
+        <h3 class="col-title">Navigation</h3>
+        <ul class="col-links">
+          {navLinks.navigation.map((link) => (
+            <li><a href={link.href}>{link.name}</a></li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Контакты / Соцсети -->
+      <div class="footer-col">
+        <h3 class="col-title">Connect</h3>
+        <ul class="col-links">
+          {navLinks.socials.map((link) => (
+            <li>
+              <a href={link.href} target="_blank" rel="noopener noreferrer" class="external-link">
+                {link.name} <span class="arrow">↗</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Нижняя плашка -->
+    <div class="footer-bottom">
+      <p class="copyright">© {currentYear} Be Mako. All rights reserved.</p>
+
+      <div class="legal-and-top">
+        <a href="/privacy" class="legal-link">Privacy Policy</a>
+        <a href="/terms" class="legal-link">Terms of Service</a>
+        
+        <button id="back-to-top" aria-label="Back to top" class="top-btn">
+          ↑ Top
+        </button>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+<script>
+  const backToTopBtn = document.getElementById('back-to-top');
+  if (backToTopBtn) {
+    backToTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+</script>
+
+<style>
+  .logo-wrapper {
+  max-width: 180px; /* или любая привычная ширина вашего логотипа */
+  display: flex;
+  align-items: center;
+}
+
+/* Принудительно ограничиваем размер SVG акулы */
+.logo-wrapper :global(svg) {
+  width: 100%;
+  height: auto;
+  max-height: 50px; /* Ограничиваем высоту, чтобы акула не вылезала */
+  display: block;
+}
+  .site-footer {
+    background-color: #090d14;
+    color: #8a99a8;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 4rem;
+    padding-bottom: 2rem;
+    font-family: inherit;
+  }
+
+  .footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .footer-top {
+    display: grid;
+    grid-template-columns: 2fr repeat(3, 1fr);
+    gap: 2.5rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .footer-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .brand-desc {
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: #94a3b8;
+    max-width: 340px;
+    margin: 0;
+  }
+
+  .email-link {
+    color: #00f0ff;
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: opacity 0.2s ease;
+  }
+
+  .email-link:hover {
+    opacity: 0.8;
+  }
+
+  .col-title {
+    color: #ffffff;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 1.25rem;
+  }
+
+  .col-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .col-links a {
+    color: #8a99a8;
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition: color 0.2s ease;
+  }
+
+  .col-links a:hover {
+    color: #00f0ff;
+  }
+
+  .external-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  .arrow {
+    font-size: 0.75rem;
+    color: #475569;
+  }
+
+  .footer-bottom {
+    padding-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.75rem;
+    color: #64748b;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .copyright {
+    margin: 0;
+  }
+
+  .legal-and-top {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .legal-link {
+    color: #64748b;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .legal-link:hover {
+    color: #cbd5e1;
+  }
+
+  .top-btn {
+    background: rgba(255, 255, 255, 0.05);
+    color: #8a99a8;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .top-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #00f0ff;
+    border-color: rgba(0, 240, 255, 0.3);
+  }
+
+  /* Адаптив под мобильные устройства */
+  @media (max-width: 868px) {
+    .footer-top {
+      grid-template-columns: 1fr 1fr;
+    }
+    .footer-brand {
+      grid-column: span 2;
+    }
+  }
+
+  @media (max-width: 540px) {
+    .footer-top {
+      grid-template-columns: 1fr;
+    }
+    .footer-brand {
+      grid-column: span 1;
+    }
+    .footer-bottom {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>

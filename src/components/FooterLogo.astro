@@ -1,0 +1,66 @@
+---
+// FooterLogo.astro — Лаконичная версия логотипа для футера (без акулы)
+---
+
+<div class="footer-logo">
+  <span class="be">Be</span>
+  <span class="ko">Mako</span>
+  <div class="a-wrapper">
+    <svg viewBox="0 0 39 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M37.0166 1.08792C21.0966 9.16618 13.3034 16.1464 1.01665 32.0879H37.0166C26.8766 30.687 26.598 24.1935 37.0166 1.08792Z" fill="#00f3ff"/>
+    </svg>
+  </div>
+</div>
+
+<style>
+.footer-logo {
+  display: inline-flex;
+  align-items: center; 
+  font-weight: 800;
+  font-size: 36px; /* Немного уменьшили размер для гармоничного вида в футере */
+  line-height: 1;
+  color: #00f3ff;
+  position: relative;
+  user-select: none;
+}
+
+.be {
+  color: #ffffff;
+  margin-right: 0.15em;
+}
+
+.a-wrapper {
+  display: inline-flex;
+  align-items: center;
+  width: 0.85em; 
+  height: 0.7em; 
+  position: relative;
+  left: -2px;
+  perspective: 1000px; 
+}
+
+.a-wrapper svg {
+  position: absolute;
+  bottom: -0.05em; 
+  width: 110%;
+  height: 110%;
+  filter: drop-shadow(0 0 8px rgba(0, 243, 255, 0.5));
+  transform-origin: bottom center;
+  transform-style: preserve-3d;
+  animation: infinity-tilt 5s ease-in-out infinite;
+}
+
+/* Анимация покачивания плавника */
+@keyframes infinity-tilt {
+  0%, 100% { transform: rotateY(-10deg) rotateZ(-3deg) rotateX(0deg); }
+  25% { transform: rotateY(15deg) rotateZ(5deg) rotateX(5deg); }
+  50% { transform: rotateY(0deg) rotateZ(-5deg) rotateX(-5deg); }
+  75% { transform: rotateY(-15deg) rotateZ(3deg) rotateX(5deg); }
+}
+
+@media (max-width: 768px) {
+  .footer-logo {
+    font-size: 28px; /* Мобильная адаптивность */
+  }
+}
+</style>

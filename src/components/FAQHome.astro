@@ -1,0 +1,171 @@
+---
+// Данные для FAQ (можно легко дополнять или править)
+const faqItems = [
+  {
+    question: "What SEO and web development services do you offer?",
+    answer: "We specialize in end-to-end technical SEO audits, site architecture design, migrations with zero traffic loss, programmatic SEO setup, and high-performance web development using Astro and modern JS frameworks."
+  },
+  {
+    question: "Why do you build websites with Astro instead of WordPress?",
+    answer: "Astro generates static HTML with zero unnecessary JavaScript by default. This results in perfect Core Web Vitals scores (100/100 on PageSpeed Insights), instant loading times, top-tier security, and significantly better organic ranking potential."
+  },
+  {
+    question: "How long does a technical SEO audit or site development take?",
+    answer: "A comprehensive Technical SEO audit typically takes 5–7 business days. Custom landing page development or site migration usually ranges from 2 to 4 weeks depending on the complexity and scope."
+  },
+  {
+    question: "Do you work with clients under an NDA?",
+    answer: "Yes, absolutely. We sign a Non-Disclosure Agreement (NDA) prior to receiving access to your code repositories, analytics, or proprietary data."
+  },
+  {
+    question: "How do we start working together?",
+    answer: "We begin with a short discovery call or asynchronous briefing to understand your goals. After analyzing your current setup, we provide a detailed proposal with deliverables, milestones, and fixed pricing."
+  }
+];
+
+// Автоматическая генерация микроразметки Schema.org (JSON-LD)
+const schemaData = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqItems.map((item) => ({
+    "@type": "Question",
+    "name": item.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": item.answer
+    }
+  }))
+};
+---
+
+<section class="faq-section">
+  <div class="faq-container">
+    <div class="faq-header">
+      <div class="code-accent">// RESOLVING DOUBTS</div>
+      <h2>Frequently Asked Questions</h2>
+      <p class="faq-subtitle">Everything you need to know about technical SEO, development, and workflow.</p>
+    </div>
+
+    <div class="faq-list">
+      {faqItems.map((item, index) => (
+        <details class="faq-item" open={index === 0}>
+          <summary class="faq-question">
+            <span>{item.question}</span>
+            <span class="faq-icon">+</span>
+          </summary>
+          <div class="faq-answer">
+            <p>{item.answer}</p>
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+
+  <!-- Внедрение SEO Микроразметки FAQPage -->
+  <script type="application/ld+json" set:html={JSON.stringify(schemaData)} />
+</section>
+
+<style>
+  .faq-section {
+    padding: 4rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .faq-container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .faq-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .code-accent {
+    font-family: monospace;
+    color: var(--mako-cyan, #00f0ff);
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    margin-bottom: 0.5rem;
+  }
+
+  h2 {
+    font-size: clamp(1.75rem, 3vw, 2.25rem);
+    color: #fff;
+    margin: 0 0 0.5rem 0;
+    font-weight: 800;
+  }
+
+  .faq-subtitle {
+    color: #8a99a8;
+    font-size: 0.95rem;
+    margin: 0;
+  }
+
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  /* Стилизация HTML5 элементов details/summary */
+  .faq-item {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 6px;
+    overflow: hidden;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+  }
+
+  .faq-item:hover {
+    border-color: rgba(0, 240, 255, 0.25);
+  }
+
+  .faq-item[open] {
+    border-color: rgba(0, 240, 255, 0.4);
+    background: rgba(0, 240, 255, 0.02);
+  }
+
+  .faq-question {
+    padding: 1.25rem 1.5rem;
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: #fff;
+    cursor: pointer;
+    list-style: none; /* Убираем стандартную стрелку браузера */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+  }
+
+  .faq-question::-webkit-details-marker {
+    display: none; /* Для Safari */
+  }
+
+  .faq-icon {
+    font-family: monospace;
+    font-size: 1.25rem;
+    color: var(--mako-cyan, #00f0ff);
+    transition: transform 0.3s ease;
+    margin-left: 1rem;
+  }
+
+  /* Анимация иконки при открытии */
+  .faq-item[open] .faq-icon {
+    transform: rotate(45deg); /* Превращает плюс в крестик */
+  }
+
+  .faq-answer {
+    padding: 0 1.5rem 1.25rem 1.5rem;
+    color: #a0aec0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
+  }
+
+  .faq-answer p {
+    margin: 0;
+    padding-top: 0.75rem;
+  }
+</style>

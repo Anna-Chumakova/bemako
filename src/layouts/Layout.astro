@@ -4,6 +4,7 @@ import { ClientRouter } from 'astro:transitions';
 import '@fontsource/inter/400.css';
 import '@fontsource/inter/700.css';
 import '@fontsource/fira-code/700.css';
+import Footer from '../components/Footer.astro';
 
 
 interface Props {
@@ -62,7 +63,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://be-mako.
                 </button>
 
                 <div class="nav-links">
-                    <a href="/#portfolio">Portfolio</a>
+                    <a href="/portfolio">Portfolio</a>
                     <a href="/#services">Services</a>
                     <a href="/#contact">Contact</a>
                 </div>
@@ -131,9 +132,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://be-mako.
             <slot />
         </main>
 
-        <footer class="main-footer">
-            <p>&copy; {new Date().getFullYear()} be<span>mako</span>. Digital Predator.</p>
-        </footer>
+        <Footer />
 
         <script>
         const setupNavigation = () => {

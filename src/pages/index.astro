@@ -4,6 +4,9 @@ import About from '../components/About.astro';
 import Work from '../components/Portfolio.astro';
 import Services from '../components/Services.astro';
 import Contact from '../components/Contact.astro';
+import GoogleReviews from '../components/GoogleReviews.astro';
+import ContactForm from '../components/ContactForm.astro';
+import FAQHome from '../components/FAQHome.astro';
 ---
 
 <Layout title="Be Mako | Technical SEO & Data Automation" description='give your business a permanent competitive advantage'>
@@ -13,7 +16,7 @@ import Contact from '../components/Contact.astro';
                
             <div class="page-content hero-content">
                 <h1 class="title">Anna <span class="text-gradient">Chumakova</span><br>
-                <span class="tagline block text-gradient">SEO SERVICES <span class="white">&</span> <span class="tagline block text-gradient">AI Promotion</span>
+                <span class="tagline block text-gradient">SEO SERVICES <span class="white">&</span> <span class="tagline block text-gradient">AI Promo</span>
                 </h1>
         
                 <p class="hero-slogan">
@@ -33,7 +36,11 @@ import Contact from '../components/Contact.astro';
         <section class="page-content"><About /></section>
         <section class="page-content"><Work /></section>
         <section class="page-content"><Services /></section>
+        <section class="page-content"><GoogleReviews /></section>
+        <section class="page-content"><FAQHome /></section>
+        <section class="page-content"><ContactForm /></section>
         <section class="page-content"><Contact /></section>
+        
 
     </div> 
 </Layout>
@@ -53,11 +60,11 @@ import Contact from '../components/Contact.astro';
         text-align: center;
         padding: 4rem 0 4rem;
         min-height: 100vh; 
-        
+        position: relative; 
     }
     @media (max-width: 768px) {
     .hero {
-        
+       
         min-height: auto;
     }
     }
@@ -71,7 +78,7 @@ import Contact from '../components/Contact.astro';
         background-repeat: no-repeat;
         background-position: bottom center;
         background-size: 100% 55vh;
-  
+        
     }
     
     .title {
@@ -142,7 +149,7 @@ import Contact from '../components/Contact.astro';
     text-align: center;
     max-width: 900px; /* Чтобы текст не растягивался во всю ширину экрана и легко читался */
     margin: 0 auto;
-    z-index: 2;
+    /* z-index: 2; */
     }
 
     /* Стилизация кнопки */

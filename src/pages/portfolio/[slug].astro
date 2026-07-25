@@ -2,120 +2,461 @@
 import Layout from '../../layouts/Layout.astro';
 import { projects } from '../../data/projects.js';
 
-// 1. Эта функция говорит Astro, какие именно страницы нужно сгенерировать при сборке
 export async function getStaticPaths() {
   return projects.map((project) => ({
     params: { slug: project.slug },
-    props: { project }, // Передаем все данные проекта внутрь страницы как props
+    props: { project },
   }));
 }
 
-// 2. Получаем данные текущего проекта
 const { project } = Astro.props;
+
+// SEO & GEO разметка на основе динамических данных
+const pageTitle = project.seoTitle || `${project.title} | Be Mako Case Study`;
+const pageDescription = project.seoDescription || project.shortDesc || "Comprehensive SEO audit and performance case study.";
+
+const schemaData = {
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": project.title,
+  "description": pageDescription,
+  "author": {
+    "@type": "Organization",
+    "name": "Be Mako"
+  },
+  "genre": "SEO Case Study"
+};
 ---
 
-<Layout title={`${project.title} | Be Mako Case Study`}>
+<Layout title={pageTitle} description={pageDescription}>
+    <script type="application/ld+json" set:html={JSON.stringify(schemaData)} />
+
     <div class="case-container">
         <section class="page-content">
 
-        <!-- Ссылка назад на главную -->
-        <a href="/#portfolio" class="back-link">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-            Back to Portfolio
-        </a>
+            <!-- Навигация -->
+            <a href="/portfolio" id="back-btn" class="back-link">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                BACK TO PORTFOLIO
+            </a>
+            <script>
+  document.addEventListener('astro:page-load', () => {
+    const backBtn = document.getElementById('back-btn');
+    
+    if (backBtn && !backBtn.dataset.bound) {
+      backBtn.dataset.bound = 'true'; // Предотвращаем дублирование слушателей
+      
+      backBtn.addEventListener('click', (e) => {
+        if (document.referrer && document.referrer.includes(window.location.hostname)) {
+          e.preventDefault();
+          window.history.back();
+        }
+      });
+    }
+  });
+</script>
+            <!-- Динамический Хедер -->
+            <header class="case-header">
+                <div class="case-badge-wrapper">
+                    {project.badge && <span class="case-badge">{project.badge}</span>}
+                    <span class="case-date">CASE STUDY</span>
+                </div>
+                <h1>{project.title}</h1>
+                {project.shortDesc && <p class="case-intro">{project.shortDesc}</p>}
+            </header>
 
-        <!-- Хедер кейса -->
-        <header class="case-header">
-            <div class="case-badge">{project.badge}</div>
-            <h1>{project.title}</h1>
-            <p class="case-intro">{project.shortDesc}</p>
-        </header>
+            <!-- Динамическая сводка по проекту (Snapshot) -->
+            {project.snapshot && project.snapshot.length > 0 && (
+                <div class="project-snapshot-grid">
+                    {project.snapshot.map((item) => (
+                        <div class="snapshot-card">
+                            <span class="snapshot-label">{item.label}</span>
+                            <span class={`snapshot-value ${item.accent ? 'accent' : ''}`}>{item.value}</span>
+                        </div>
+                    ))}
+                </div>
+            )}
 
-        <hr class="divider" />
+            <hr class="divider" />
 
-        <!-- Главный контент кейса -->
-        <article class="case-content" set:html={project.fullContent}>
-            <!-- Astro сам безопасно вставит сюда HTML-верстку из поля fullContent -->
-        </article>
+            <div class="case-body">
+                
+                <!-- Блок 1: Challenge -->
+                {project.challenge && (
+                    <section class="case-section">
+                        <h2><span class="code-accent">01.</span> The Challenge & Client Request</h2>
+                        <p>{project.challenge}</p>
+
+                        {project.quote && (
+                            <div class="quote-box">
+                                <p>"{project.quote}"</p>
+                            </div>
+                        )}
+                    </section>
+                )}
+
+                <!-- Блок 2: Steps / Execution -->
+                {project.steps && project.steps.length > 0 && (
+                    <section class="case-section">
+                        <h2><span class="code-accent">02.</span> What Was Done (Execution Strategy)</h2>
+                        <div class="steps-grid">
+                            {project.steps.map((step) => (
+                                <div class="step-card">
+                                    <div class="step-num">{step.num}</div>
+                                    <h3>{step.title}</h3>
+                                    <p>{step.desc}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </section>
+                )}
+
+                <!-- Блок 3: HTML контент из JS -->
+                {project.fullContent && (
+                    <article class="case-content" set:html={project.fullContent} />
+                )}
+
+                <!-- Блок 4: Метрики и Скриншот -->
+                <section class="case-section results-section">
+                    <h2><span class="code-accent">03.</span> Results & Performance Proof</h2>
+
+                    {project.metrics && project.metrics.length > 0 && (
+                        <div class="metrics-grid">
+                            {project.metrics.map((metric) => (
+                                <div class="metric-card">
+                                    <span class="metric-num">{metric.value}</span>
+                                    <span class="metric-desc">{metric.label}</span>
+                                </div>
+                            ))}
+                        </div>
+                    )}
+
+                    <!-- Скриншот из Search Console / Аналитики -->
+                    {project.image && (
+                        <div class="proof-image-container">
+                            <div class="proof-header">
+                                <div class="proof-dots">
+                                    <span></span><span></span><span></span>
+                                </div>
+                                <span class="proof-title">Google Search Console — Verified Metrics</span>
+                            </div>
+                            <div class="proof-image-wrapper">
+                                <img src={project.image} alt={`${project.title} Performance Graph`} loading="lazy" />
+                            </div>
+                        </div>
+                    )}
+                </section>
+
+                <!-- CTA Блок -->
+                <section class="case-cta">
+                    <div class="cta-inner">
+                        <h2>Ready to Scale Your Search Growth?</h2>
+                        <p>Get a comprehensive technical audit tailored to modern search and AI engines.</p>
+                        <a href="/#contact" class="cta-button">REQUEST TECHNICAL AUDIT</a>
+                    </div>
+                </section>
+
+            </div>
+
         </section>
     </div>
 </Layout>
 
 <style>
     .case-container {
-        max-width: 800px;
+        max-width: 900px;
         margin: 0 auto;
-        padding: 4rem 1.5rem;
+       padding: 4rem 1.5rem 6rem;
     }
-    
+
     .back-link {
         display: inline-flex;
         align-items: center;
         gap: 0.5rem;
         color: var(--mako-cyan);
         text-decoration: none;
-        font-family: monospace;
-        font-size: 0.9rem;
-        margin-bottom: 3rem;
-        transition: transform 0.2s ease;
+        font-family: var(--font-code);
+        font-size: 0.85rem;
+        margin-bottom: 2.5rem;
+        transition: transform 0.2s ease, opacity 0.2s ease;
+        letter-spacing: 1px;
     }
     .back-link:hover {
         transform: translateX(-4px);
+        opacity: 0.8;
     }
 
-    .case-header h1 {
-        font-size: clamp(2rem, 5vw, 3rem);
-        color: #fff;
-        margin: 1rem 0 1.5rem;
-        font-weight: 800;
-        line-height: 1.2;
+    /* Хедер */
+    .case-badge-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1rem;
     }
     .case-badge {
-        display: inline-block;
-        font-family: monospace;
-        font-size: 0.8rem;
+        font-family: var(--font-code);
+        font-size: 0.75rem;
         color: var(--mako-cyan);
         border: 1px solid rgba(0, 240, 255, 0.3);
         padding: 0.25rem 0.75rem;
         border-radius: 2px;
         text-transform: uppercase;
         letter-spacing: 1px;
+        background: rgba(0, 240, 255, 0.03);
+    }
+    .case-date {
+        font-family: var(--font-code);
+        font-size: 0.75rem;
+        color: rgba(255, 255, 255, 0.4);
+    }
+
+    .case-header h1 {
+        font-size: clamp(2rem, 4.5vw, 3rem);
+        color: #fff;
+        margin: 0 0 1.25rem;
+        font-weight: 800;
+        line-height: 1.2;
+        letter-spacing: -0.5px;
     }
     .case-intro {
         font-size: 1.2rem;
-        line-height: 1.6;
-        color: var(--mako-text);
-        opacity: 0.9;
+        line-height: 1.7;
+        color: rgba(255, 255, 255, 0.85);
+        margin-bottom: 2rem;
+    }
+
+    /* Snapshot Grid */
+    .project-snapshot-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 1rem;
+        margin-bottom: 2.5rem;
+    }
+    .snapshot-card {
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        padding: 1rem;
+        border-radius: 4px;
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+    }
+    .snapshot-label {
+        font-family: var(--font-code);
+        font-size: 0.7rem;
+        color: rgba(255, 255, 255, 0.4);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    .snapshot-value {
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: #fff;
+    }
+    .snapshot-value.accent {
+        color: var(--mako-cyan);
     }
 
     .divider {
         border: 0;
         height: 1px;
-        background: rgba(255, 255, 255, 0.1);
-        margin: 3rem 0;
+        background: linear-gradient(90deg, rgba(0, 240, 255, 0.3), rgba(255, 255, 255, 0.05), transparent);
+        margin: 2.5rem 0 3.5rem;
     }
 
-    /* Стилизация внутренностей статьи (селектор :global нужен, так как HTML вставляется динамически) */
-    .case-content :global(p) {
-        font-size: 1.1rem;
+    /* Sections */
+    .case-section {
+        margin-bottom: 3.5rem;
+    }
+    .case-section h2 {
+        font-size: 1.6rem;
+        color: #fff;
+        margin-bottom: 1.25rem;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+    .case-section p {
+        font-size: 1.05rem;
         line-height: 1.8;
-        color: var(--mako-text);
+        color: rgba(255, 255, 255, 0.8);
+        margin-bottom: 1.5rem;
+    }
+
+    .quote-box {
+        border-left: 2px solid var(--mako-cyan);
+        background: rgba(0, 240, 255, 0.02);
+        padding: 1.25rem 1.5rem;
+        margin: 1.5rem 0;
+        border-radius: 0 4px 4px 0;
+    }
+    .quote-box p {
+        margin: 0;
+        font-style: italic;
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 1rem;
+    }
+
+    /* Steps */
+    .steps-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 1.25rem;
+        margin-top: 1.5rem;
+    }
+    .step-card {
+        background: rgba(255, 255, 255, 0.015);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        padding: 1.5rem;
+        border-radius: 4px;
+    }
+    .step-num {
+        font-family: var(--font-code);
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--mako-cyan);
+        opacity: 0.6;
+        margin-bottom: 0.75rem;
+    }
+    .step-card h3 {
+        font-size: 1.1rem;
+        color: #fff;
+        margin: 0 0 0.5rem;
+    }
+    .step-card p {
+        font-size: 0.9rem;
+        line-height: 1.6;
+        margin: 0;
+        color: rgba(255, 255, 255, 0.7);
+    }
+
+    /* Metrics */
+    .metrics-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.25rem;
+        margin: 2rem 0;
+    }
+    .metric-card {
+        background: rgba(0, 240, 255, 0.02);
+        border: 1px solid rgba(0, 240, 255, 0.15);
+        padding: 1.5rem;
+        border-radius: 4px;
+        text-align: center;
+    }
+    .metric-num {
+        display: block;
+        font-family: var(--font-code);
+        font-size: 2.2rem;
+        font-weight: 800;
+        color: var(--mako-cyan);
+        text-shadow: 0 0 12px rgba(0, 240, 255, 0.3);
+        margin-bottom: 0.25rem;
+    }
+    .metric-desc {
+        font-size: 0.85rem;
+        color: rgba(255, 255, 255, 0.7);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    /* Proof Image */
+    .proof-image-container {
+        background: #0d151d;
+        border: 1px solid rgba(0, 240, 255, 0.2);
+        border-radius: 6px;
+        overflow: hidden;
+        margin-top: 2rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+    .proof-header {
+        background: rgba(255, 255, 255, 0.03);
+        padding: 0.75rem 1rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .proof-dots {
+        display: flex;
+        gap: 6px;
+    }
+    .proof-dots span {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.2);
+    }
+    .proof-title {
+        font-family: var(--font-code);
+        font-size: 0.75rem;
+        color: rgba(255, 255, 255, 0.5);
+    }
+    .proof-image-wrapper img {
+        width: 100%;
+        height: auto;
+        display: block;
+        object-fit: cover;
+    }
+
+    /* Dynamic HTML content */
+    .case-content :global(p) {
+        font-size: 1.05rem;
+        line-height: 1.8;
+        color: rgba(255, 255, 255, 0.8);
         margin-bottom: 1.5rem;
     }
     .case-content :global(h3) {
         color: #fff;
-        font-size: 1.5rem;
-        margin: 2.5rem 0 1rem;
+        font-size: 1.35rem;
+        margin: 2rem 0 1rem;
         font-weight: 700;
     }
-    .case-content :global(ul) {
-        margin-bottom: 1.5rem;
-        padding-left: 1.25rem;
+
+    /* CTA */
+    .case-cta {
+        margin-top: 4rem;
+        background: linear-gradient(180deg, rgba(0, 240, 255, 0.03) 0%, rgba(0, 240, 255, 0.08) 100%);
+        border: 1px solid rgba(0, 240, 255, 0.2);
+        border-radius: 6px;
+        padding: 3rem 2rem;
+        text-align: center;
     }
-    .case-content :global(li) {
-        font-size: 1.1rem;
-        color: var(--mako-text);
-        line-height: 1.6;
-        margin-bottom: 0.5rem;
+    .cta-inner h2 {
+        font-size: 1.75rem;
+        color: #fff;
+        margin-bottom: 0.75rem;
+    }
+    .cta-inner p {
+        color: rgba(255, 255, 255, 0.7);
+        margin-bottom: 1.75rem;
+    }
+    .cta-button {
+        display: inline-block;
+        font-family: var(--font-code);
+        font-size: 0.9rem;
+        font-weight: 700;
+        color: var(--mako-bg);
+        background: var(--mako-cyan);
+        padding: 0.85rem 2rem;
+        border-radius: 3px;
+        text-decoration: none;
+        letter-spacing: 1px;
+        box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .cta-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 0 25px rgba(0, 240, 255, 0.5);
+    }
+
+    @media (max-width: 768px) {
+        .project-snapshot-grid, .steps-grid, .metrics-grid {
+            grid-template-columns: 1fr;
+        }
+        .case-cta {
+            padding: 2rem 1.25rem;
+        }
     }
 </style>
