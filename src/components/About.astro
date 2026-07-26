@@ -5,31 +5,41 @@ import profilePhoto from '../assets/my-photo2.jpg';
 // 1. Динамический массив сертификатов и дипломов
 const credentials = [
   {
+    id: 'google-ads-creative',
+    title: 'Google Ads Creative Certification',
+    issuer: 'Google Skillshop',
+    year: '2025',
+    type: 'Certification',
+    description: 'Validated expertise in designing high-performing ad creatives, data-driven creative strategies across Search, Video, and Display campaigns, and creative A/B testing.',
+    verifyUrl: 'https://skillshop.credential.net/c1fca9a9-0b1d-49ba-9c4f-62859d647f54#acc.yA1QnMCR',
+    image: '/certificates/google-creative.jpg'
+  },
+  {
     id: 'degree-marketing',
     title: "Bachelor's Degree in Marketing",
-    issuer: 'University',
-    year: '2018',
+    issuer: 'Donetsk National University of Economics and Trade',
+    year: '2010',
     type: 'Degree',
     description: 'Specialization in strategic marketing, market analysis, consumer behavior, and brand management.',
     image: '/certificates/marketing-degree.jpg'
   },
   {
     id: 'seo-cert-1',
-    title: 'Advanced Technical SEO Certification',
-    issuer: 'SEO Academy',
+    title: 'Technical SEO Certification',
+    issuer: 'Projector Institute',
     year: '2023',
     type: 'Certification',
-    description: 'In-depth specialization in site architecture, Core Web Vitals optimization, crawling budget allocation, and indexing strategies.',
+    description: 'In-depth specialization in site architecture, semantic core building, Core Web Vitals optimization, crawling budget allocation, and indexing strategies.',
     image: '/certificates/seo-cert-1.jpg'
   },
   {
-    id: 'seo-cert-2',
-    title: 'Programmatic SEO & Data Automation',
-    issuer: 'Tech Institute',
-    year: '2024',
+    id: 'fullstack-dev',
+    title: 'Full Stack Web Developer Certification',
+    issuer: 'GoIT IT School',
+    year: '2023',
     type: 'Certification',
-    description: 'Building automated page generation pipelines, custom script development with Node.js, and structured schema integration.',
-    image: '/certificates/seo-cert-2.jpg'
+    description: 'Full Stack Web Development: HTML5/CSS3, JavaScript, React, Node.js, automated scripts, and custom web engineering.',
+    image: '/certificates/fullstack-cert.jpg'
   }
 ];
 
@@ -41,7 +51,8 @@ const jsonLdCredentials = credentials.map(c => ({
   "recognizedBy": {
     "@type": "Organization",
     "name": c.issuer
-  }
+  },
+  ...(c.verifyUrl && { "url": c.verifyUrl })
 }));
 ---
 
@@ -49,29 +60,30 @@ const jsonLdCredentials = credentials.map(c => ({
 <script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "Person",
-  "name": "Аня",
+  "name": "Anna Chumakova",
   "alternateName": "Anya SEO",
-  "jobTitle": "Data-Driven Technical SEO Engineer",
+  "jobTitle": "Senior SEO Specialist & Digital Marketer",
   "worksFor": {
     "@type": "Organization",
     "name": "Be Mako Studio",
     "url": "https://be-mako.com"
   },
-  "description": "Технический SEO-инженер и основатель студии Be Mako.",
+  "description": "Senior SEO Specialist specializing in Programmatic SEO, Technical SEO, AI SEO (GEO/AEO), and Full-Stack Web Development.",
   "url": "https://be-mako.com",
   "knowsAbout": [
     "Technical SEO",
     "Search Engine Optimization",
+    "Programmatic SEO",
+    "AI SEO / GEO / AEO",
     "Astro Framework",
     "Node.js Automation",
-    "AI Engineering",
-    "Programmatic SEO"
+    "Web Analytics"
   ],
   "hasCredential": jsonLdCredentials,
   "sameAs": [
-    "https://github.com/your-github",
-    "https://linkedin.com/in/your-linkedin",
-    "https://t.me/your-telegram"
+    "https://github.com/Anna-Chumakova",
+    "https://www.linkedin.com/in/anna-chumakova-profil/",
+    "https://t.me/Anna_webmaster_bg"
   ]
 })} />
 
@@ -81,14 +93,23 @@ const jsonLdCredentials = credentials.map(c => ({
         
         <!-- Текстовая колонка -->
         <div class="about-content">
-            <h2>Data-Driven Technical SEO Engineer</h2>
+            <h2>Senior SEO Specialist & Technical Engineer</h2>
             <p>
-                Hi, I'm Anya. I bridge the gap between heavy automation, clean code architectures, and aggressive organic growth. 
-                While traditional SEOs rely only on third-party platforms, I build custom automated pipelines using <strong>Node.js</strong> and <strong>AI</strong> models like Gemini to capture scale that others cannot reach.
+                Hi, I'm Anna. I bridge the gap between heavy automation, clean code architectures, and aggressive organic growth. 
+                While traditional SEOs rely only on third-party platforms, I build custom automated pipelines using <strong>Node.js</strong> and <strong>AI</strong> models to capture scale that others cannot reach.
             </p>
             <p>
                 Whether it’s executing a zero-traffic-loss enterprise migration to modern frameworks like <strong>Astro</strong> or launching global programmatic SEO infrastructure from scratch, my goal is simple: engineering maximum search visibility at peak technical performance.
             </p>
+
+            <!-- Ссылка на страницу резюме -->
+            <div class="resume-cta-wrapper">
+                <a href="/resume" class="resume-button" target="_blank" rel="noopener noreferrer">
+                    <!-- <span class="btn-icon"></span> -->
+                    <span>View Full Resume</span>
+                    <span class="arrow">↗</span>
+                </a>
+            </div>
         </div>
 
         <!-- Колонка с фото -->
@@ -96,7 +117,7 @@ const jsonLdCredentials = credentials.map(c => ({
             <div class="image-frame">
                 <Image 
                     src={profilePhoto} 
-                    alt="Anya — Technical SEO Engineer and Founder of Be Mako Studio" 
+                    alt="Anna Chumakova — Senior SEO Specialist and Founder of Be Mako Studio" 
                     width={380}
                     height={380}
                     loading="eager" 
@@ -105,7 +126,7 @@ const jsonLdCredentials = credentials.map(c => ({
             </div>
         </div>
 
-        <!-- Блок с сертификатами (Вынесен под текст и фото) -->
+        <!-- Блок с сертификатами -->
         <div class="credentials-block">
             <h3 class="credentials-title">// EDUCATION & CERTIFICATIONS</h3>
             
@@ -126,6 +147,15 @@ const jsonLdCredentials = credentials.map(c => ({
                         
                         <div class="cred-body">
                             <p class="cred-desc">{item.description}</p>
+                            
+                            {item.verifyUrl && (
+                                <div class="verify-link-wrapper">
+                                    <a href={item.verifyUrl} target="_blank" rel="noopener noreferrer" class="verify-credential-link">
+                                        Verify Credential ↗
+                                    </a>
+                                </div>
+                            )}
+
                             {item.image && (
                                 <div class="cred-image-wrapper">
                                     <img src={item.image} alt={`${item.title} - ${item.issuer}`} loading="lazy" />
@@ -142,7 +172,7 @@ const jsonLdCredentials = credentials.map(c => ({
 
 <style>
     .about-section {
-        padding: var(--section-gap) 0 2rem;
+        padding: var(--section-gap, 4rem) 0 2rem;
     }
 
     .about-grid {
@@ -154,7 +184,7 @@ const jsonLdCredentials = credentials.map(c => ({
 
     .code-accent {
         font-family: monospace;
-        color: var(--mako-cyan);
+        color: var(--mako-cyan, #00f0ff);
         letter-spacing: 2px;
         font-size: 0.85rem;
         margin-bottom: 1rem;
@@ -170,7 +200,7 @@ const jsonLdCredentials = credentials.map(c => ({
     p {
         font-size: clamp(0.95rem, 1.5vw, 1.05rem);
         line-height: 1.7;
-        color: var(--mako-text);
+        color: var(--mako-text, #a0aec0);
         margin-bottom: 1.5rem;
     }
 
@@ -179,9 +209,52 @@ const jsonLdCredentials = credentials.map(c => ({
         font-weight: 600;
     }
 
-    /* --- СТИЛИ ДЛЯ ВЫПАДАЮЩИХ СЕРТИФИКАТОВ --- */
+    /* --- СТИЛИ КНОПКИ РЕЗЮМЕ --- */
+    .resume-cta-wrapper {
+        margin-top: 1.8rem;
+        margin-bottom: 1rem;
+    }
+
+    /* Явно указываем контекст родителю, чтобы Astro точно привязал data-astro-cid */
+    .resume-cta-wrapper .resume-button,
+    .resume-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        padding: 0.75rem 1.4rem;
+        background: rgba(0, 240, 255, 0.05);
+        border: 1px solid var(--mako-cyan, #00f0ff);
+        color: var(--mako-cyan, #00f0ff) !important;
+        font-family: monospace;
+        font-size: 0.9rem;
+        font-weight: 600;
+        border-radius: 4px;
+        text-decoration: none;
+        letter-spacing: 0.5px;
+        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        box-shadow: 0 0 15px rgba(0, 240, 255, 0.05);
+    }
+
+    .resume-cta-wrapper .resume-button:hover,
+    .resume-button:hover {
+        background: var(--mako-cyan, #00f0ff);
+        color: #0b0f19 !important;
+        box-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
+        transform: translateY(-2px);
+    }
+
+    .resume-button .arrow {
+        display: inline-block;
+        transition: transform 0.2s ease;
+    }
+
+    .resume-button:hover .arrow {
+        transform: translate(2px, -2px);
+    }
+
+    /* --- СЕРТИФИКАТЫ --- */
     .credentials-block {
-        grid-column: 1 / -1; /* Занимает всю ширину грида */
+        grid-column: 1 / -1;
         margin-top: 1.5rem;
         padding-top: 1.5rem;
         border-top: 1px solid rgba(255, 255, 255, 0.08);
@@ -190,12 +263,11 @@ const jsonLdCredentials = credentials.map(c => ({
     .credentials-title {
         font-family: monospace;
         font-size: 0.85rem;
-        color: var(--mako-cyan);
+        color: var(--mako-cyan, #00f0ff);
         letter-spacing: 1.5px;
         margin-bottom: 1.2rem;
     }
 
-    /* Сетка сертификатов на Flexbox */
     .accordion-list {
         display: flex;
         flex-wrap: wrap;
@@ -210,22 +282,20 @@ const jsonLdCredentials = credentials.map(c => ({
         border-radius: 4px;
         overflow: hidden;
         transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        
-        /* По умолчанию на мобилках — 100% ширины */
         flex: 1 1 100%;
         box-sizing: border-box;
     }
 
     .cred-item:hover {
         border-color: rgba(0, 240, 255, 0.2);
-        border-left-color: var(--mako-cyan);
+        border-left-color: var(--mako-cyan, #00f0ff);
         background: rgba(0, 240, 255, 0.02);
         transform: translateY(-2px);
     }
 
     .cred-item[open] {
         border-color: rgba(0, 240, 255, 0.3);
-        border-left-color: var(--mako-cyan);
+        border-left-color: var(--mako-cyan, #00f0ff);
         background: rgba(0, 240, 255, 0.03);
     }
 
@@ -257,7 +327,7 @@ const jsonLdCredentials = credentials.map(c => ({
     }
 
     .cred-item:hover .cred-name {
-        color: var(--mako-cyan);
+        color: var(--mako-cyan, #00f0ff);
     }
 
     .cred-meta {
@@ -267,7 +337,7 @@ const jsonLdCredentials = credentials.map(c => ({
     }
 
     .accordion-icon {
-        color: var(--mako-cyan);
+        color: var(--mako-cyan, #00f0ff);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -288,7 +358,26 @@ const jsonLdCredentials = credentials.map(c => ({
         font-size: 0.88rem;
         line-height: 1.5;
         color: #a0aec0;
-        margin: 0.75rem 0 1rem;
+        margin: 0.75rem 0 0.5rem;
+    }
+
+    .verify-link-wrapper {
+        margin-bottom: 0.8rem;
+    }
+
+    .verify-credential-link {
+        font-family: monospace;
+        font-size: 0.8rem;
+        color: var(--mako-cyan, #00f0ff);
+        text-decoration: none;
+        display: inline-block;
+        font-weight: 600;
+        transition: opacity 0.2s ease;
+    }
+
+    .verify-credential-link:hover {
+        opacity: 0.8;
+        text-decoration: underline;
     }
 
     .cred-image-wrapper {
@@ -298,6 +387,7 @@ const jsonLdCredentials = credentials.map(c => ({
         overflow: hidden;
         border: 1px solid rgba(255, 255, 255, 0.1);
         background: #000;
+        margin-top: 0.5rem;
     }
 
     .cred-image-wrapper img {
@@ -307,7 +397,6 @@ const jsonLdCredentials = credentials.map(c => ({
         object-fit: contain;
     }
 
-    /* --- ФОТО И ИЗОБРАЖЕНИЯ --- */
     .about-image-wrapper {
         display: flex;
         justify-content: center;
@@ -333,8 +422,8 @@ const jsonLdCredentials = credentials.map(c => ({
         left: -1px;
         width: 20px;
         height: 20px;
-        border-top: 2px solid var(--mako-cyan);
-        border-left: 2px solid var(--mako-cyan);
+        border-top: 2px solid var(--mako-cyan, #00f0ff);
+        border-left: 2px solid var(--mako-cyan, #00f0ff);
     }
     
     .profile-img {
@@ -353,7 +442,6 @@ const jsonLdCredentials = credentials.map(c => ({
         filter: grayscale(0%) contrast(100%);
     }
 
-    /* --- МОБИЛЬНАЯ ВЕРСИЯ (до 992px) --- */
     @media (max-width: 992px) {
         .about-grid {
             grid-template-columns: 1fr;
@@ -361,24 +449,22 @@ const jsonLdCredentials = credentials.map(c => ({
         }
 
         .about-image-wrapper {
-            order: 1; /* Фото первое сверху */
+            order: 1;
         }
 
         .about-content {
-            order: 2; /* Текст второй */
+            order: 2;
         }
 
         .credentials-block {
-            order: 3; /* Сертификаты строго третьи по порядку */
+            order: 3;
             margin-top: 1rem;
         }
     }
 
-    /* --- ДЕСКТОП ВЕРСИЯ (от 1024px) --- */
     @media (min-width: 1024px) {
         .cred-item {
-            /* 3 в ряд на десктопе с авто-растяжением через Flexbox */
-            flex: 1 1 calc(33.333% - 1.25rem);
+            flex: 1 1 calc(50% - 1.25rem);
             min-width: 280px;
         }
     }

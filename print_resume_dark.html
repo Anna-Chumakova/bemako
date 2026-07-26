@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Anna Chumakova - Resume</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #0d1117;
+      color: #c9d1d9;
+      font-size: 11px;
+      line-height: 1.4;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .resume-container {
+      width: 210mm;
+      min-height: 297mm;
+      margin: 0 auto;
+      background: #0d1117;
+      display: flex;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    /* Left Sidebar */
+    .sidebar {
+      width: 32%;
+      background: #161b22;
+      padding: 20px 15px;
+      border-radius: 8px;
+      border: 1px solid #30363d;
+      margin-right: 20px;
+    }
+
+    .photo-wrapper {
+      width: 110px;
+      height: 140px;
+      margin: 0 auto 15px auto;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 2px solid #00f2fe;
+    }
+
+    .photo-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .name-title {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .name-title h1 {
+      font-size: 16px;
+      color: #ffffff;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+
+    .name-title p {
+      font-size: 10px;
+      color: #00f2fe;
+      font-weight: 600;
+    }
+
+    .side-block {
+      margin-bottom: 18px;
+    }
+
+    .side-block h2 {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: #00f2fe;
+      text-transform: uppercase;
+      border-bottom: 1px solid #30363d;
+      padding-bottom: 4px;
+      margin-bottom: 8px;
+    }
+
+    .info-list {
+      list-style: none;
+    }
+
+    .info-list li {
+      margin-bottom: 6px;
+      word-break: break-word;
+    }
+
+    .info-list strong {
+      color: #ffffff;
+      display: block;
+      font-size: 9.5px;
+      text-transform: uppercase;
+    }
+    .info-list a {
+      color: #2b6cb0;
+      text-decoration: none;
+    }
+
+    .info-list a:hover {
+      text-decoration: underline;
+    }
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+
+    .badge {
+      background: #21262d;
+      color: #58a6ff;
+      border: 1px solid #30363d;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 9px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Main Content */
+    .main-content {
+      width: 68%;
+    }
+
+    .main-block {
+      margin-bottom: 18px;
+    }
+
+    .main-block h2 {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      color: #00f2fe;
+      margin-bottom: 10px;
+    }
+
+    .summary-text {
+      background: #161b22;
+      padding: 12px;
+      border-radius: 6px;
+      border: 1px solid #30363d;
+      color: #8b949e;
+      text-align: justify;
+    }
+
+    .card {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 6px;
+      padding: 10px 12px;
+      margin-bottom: 10px;
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 4px;
+    }
+
+    .card-title {
+      font-size: 11px;
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    .card-title .company {
+      color: #00f2fe;
+    }
+
+    .card-date {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      color: #8b949e;
+    }
+
+    .card ul {
+      padding-left: 14px;
+      color: #8b949e;
+    }
+
+    .card li {
+      margin-bottom: 4px;
+    }
+
+    .card li strong {
+      color: #c9d1d9;
+    }
+
+    .verify-link {
+      color: #00f2fe;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      text-decoration: underline;
+      display: inline-block;
+      margin-top: 4px;
+    }
+
+    @page {
+      size: A4;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+
+<div class="resume-container">
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="photo-wrapper">
+     
+      <img src="photo_resume2.jpg" alt="Anna Chumakova">
+    </div>
+
+    <div class="name-title">
+      <h1>Anna Chumakova</h1>
+      <p>Senior SEO Specialist & Digital Marketer</p>
+    </div>
+
+    <div class="side-block">
+      <h2>Contact Info</h2>
+      <ul class="info-list">
+        <li><strong>Location:</strong> Burgas, Bulgaria</li>
+        <li>
+            <strong>Email</strong>
+            <a href="mailto:ann020187@gmail.com">ann020187@gmail.com</a>
+          </li>
+        <li><strong>Phone:</strong> +359 876 793 877</li>
+        <!-- <li>
+            <strong>Portfolio</strong>
+            
+            <a href="https://be-mako/portfolio" class="portfolio-link" target="_blank" rel="noopener noreferrer">View Portfolio ↗</a>
+          </li> -->
+          <li>
+            <strong>LinkedIn</strong>
+            <a href="https://www.linkedin.com/in/anna-chumakova-profil/" target="_blank" rel="noopener noreferrer">anna-chumakova-profil</a>
+          </li>
+          <li>
+            <strong>Telegram</strong>
+            <a href="https://t.me/Anna_webmaster_bg" target="_blank" rel="noopener noreferrer">@Anna_webmaster_bg</a>
+          </li>
+          <li>
+            <strong>GitHub</strong>
+            <a href="https://github.com/Anna-Chumakova" target="_blank" rel="noopener noreferrer">Anna-Chumakova</a>
+          </li>
+      </ul>
+    </div>
+
+    <div class="side-block">
+      <h2>Key Skills</h2>
+      <div class="badges">
+        <span class="badge">SEO Strategy</span>
+        <span class="badge">Programmatic SEO</span>
+        <span class="badge">Technical SEO</span>
+        <span class="badge">AI SEO / GEO / AEO</span>
+        <span class="badge">Semantic Core & Clustering</span>
+        <span class="badge">Link Building</span>
+        <span class="badge">UX / UI Audit</span>
+        <span class="badge">Web Analytics (GA4, GSC)</span>
+        <span class="badge">HTML / CSS / JS / Node.js</span>
+        <span class="badge">WordPress</span>
+        <span class="badge">OpenCart</span>
+<span class="badge">Framer</span>
+<span class="badge">Tilda</span>
+<span class="badge">Astro</span>
+      </div>
+    </div>
+
+    <div class="side-block">
+      <h2>Tools & Tech</h2>
+      <ul class="info-list">
+        <li><strong>SEO:</strong> Ahrefs, Screaming Frog, SE Ranking, Whatsmyserp</li>
+        <li><strong>Analytics:</strong> GSC, GA4, Looker Studio, GTM</li>
+        <li><strong>Dev & Data:</strong> HTML5, CSS3, JavaScript, React, Node.js, JSON</li>
+        <li><strong>AI:</strong> Content generation & prompt engineering</li>
+        <li><strong>Content & CMS:</strong> WordPress, OpenCart, Tilda, Framer, Astro. Basic HTML/CSS layout editing & content updates.</li>
+      </ul>
+    </div>
+
+    <div class="side-block">
+      <h2>Languages</h2>
+      <ul class="info-list">
+        <li><strong>Russian:</strong> Native</li>
+        <li><strong>Ukrainian:</strong> Native</li>
+        <li><strong>English:</strong> Intermediate / Proficient Written</li>
+        <li><strong>Bulgarian:</strong> Intermediate / Proficient Written</li>
+      </ul>
+    </div>
+
+    <div class="side-block">
+      <h2>Soft Skills</h2>
+      <div class="badges">
+        <span class="badge">Analytical Mindset</span>
+        <span class="badge">Problem Solving</span>
+        <span class="badge">Teamwork & Collaboration</span>
+        <span class="badge">Client Orientation</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+    <section class="main-block">
+      <h2>// Professional Summary</h2>
+      <p class="summary-text">
+        Results-driven Senior SEO Specialist with over 3 years of experience across Programmatic SEO, technical SEO, content strategy, semantic architecture, and web analytics. Proven track record in optimizing international platforms, implementing AI-driven Search Engine Optimization (GEO/AEO), executing technical audits, and building web solutions. Skilled in combining SEO expertise with full-stack web development principles to maximize domain authority and organic growth.
+      </p>
+    </section>
+
+    <section class="main-block">
+      <h2>// Experience</h2>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">SEO Specialist <span class="company">@ Penguin-team</span></div>
+          <div class="card-date">Dec 2025 - Present</div>
+        </div>
+        <ul>
+          <li><strong>Strategic Planning & Architecture:</strong> Developed end-to-end SEO strategies, semantic keyword clustering, and scalable site architectures for international target markets.</li>
+          <li><strong>AI SEO & Content Optimization:</strong> Implemented modern AI-based strategies (AEO/GEO) to maximize brand presence across AI search platforms (ChatGPT, Perplexity, Google AI Overviews). Created detailed technical specifications for copywriters.</li>
+          <li><strong>Technical SEO & UX Audits:</strong> Conducted comprehensive technical audits (Screaming Frog, GSC, Ahrefs), site speed optimizations, and UX/UI audits targeting checkout flow and navigation.</li>
+          <li><strong>Link Building Management:</strong> Conducted competitor backlink profile analysis, donor domain selection (DR/Traffic criteria), and managed outreach campaigns.</li>
+          <li><strong>Web Analytics & Reporting:</strong> Maintained and validated GA4 setups; designed interactive monthly client dashboards in Looker Studio with strategic roadmaps.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Programmatic SEO Specialist <span class="company">@ Claryfi</span></div>
+          <div class="card-date">Feb 2025 - Jun 2025</div>
+        </div>
+        <ul>
+          <li><strong>Programmatic SEO & Bulk Page Generation:</strong> Built scalable systems for generating, formatting, and optimizing thousands of multilingual webpages.</li>
+          <li><strong>Meta Tag Automation:</strong> Automated creation of unique meta tags (titles, descriptions) at scale using AI tools, JSON, and Google Sheets.</li>
+          <li><strong>Data Extraction & Scripting:</strong> Utilized Node.js and Google Sheets automation to extract data, manage content, and populate page templates efficiently.</li>
+          <li><strong>Performance Monitoring:</strong> Tracked programmatic page performance using Google Search Console, Ahrefs, and SE Ranking.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Webmaster & SEO Specialist <span class="company">@ Freelance</span></div>
+          <div class="card-date">Aug 2023 - Dec 2024</div>
+        </div>
+        <ul>
+          <li>Designed and developed customized websites for local businesses using HTML, CSS, and JavaScript.</li>
+          <li><strong>Technical Optimization:</strong> Identified duplicate content issues via Screaming Frog and wrote custom canonical/redirect rules; audited PageSpeed Insights and Schema microdata (Rich Results); optimized sitemaps and robots.txt.</li>
+          <li><strong>Semantics & Link Building:</strong> Built clustered semantic cores using Google Ads and Ahrefs; evaluated competitor link profiles and acquired quality backlinks.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">SEO Specialist <span class="company">@ Dila</span></div>
+          <div class="card-date">Jul 2023 - Aug 2023</div>
+        </div>
+        <ul>
+          <li>Performed complete SEO audit for the primary medical platform (dila.ua).</li>
+          <li>Identified duplicate URLs, implemented cleanup rules, validated microdata structure, and reviewed robots.txt and sitemaps.</li>
+          <li>Built core keyword semantic trees and analyzed link acquisition opportunities against competitors.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="main-block">
+      <h2>// Education & Certifications</h2>
+
+      <!-- Google Ads Creative Certification -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Google Ads Creative Certification <span class="company">@ Google Skillshop</span></div>
+          <div class="card-date">Sep 2025</div>
+        </div>
+        <p style="color: #8b949e;">
+          Validated expertise in designing high-performing ad creatives, leveraging data-driven creative strategies across Search, Video, and Display campaigns, and executing creative A/B testing.
+        </p>
+        <a href="https://skillshop.credential.net/c1fca9a9-0b1d-49ba-9c4f-62859d647f54#acc.yA1QnMCR" class="verify-link" target="_blank">[Verify Credential ↗]</a>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">SEO Certification <span class="company">@ Projector Creative & Tech</span></div>
+          <div class="card-date">Jul 2023 - Aug 2023</div>
+        </div>
+        <p style="color: #8b949e;">Professional SEO Course: Technical SEO, Semantic Core, Content Creation, Link Building, SEO Analysis.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Full Stack Developer Certification <span class="company">@ GoIT IT School</span></div>
+          <div class="card-date">Jan 2022 - Feb 2023</div>
+        </div>
+        <p style="color: #8b949e;">Full Stack Web Development: HTML5/CSS3, JavaScript, React, Node.js.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Bachelor's Degree in Marketing <span class="company">@ DonNUET</span></div>
+          <div class="card-date">Sep 2005 - Jul 2010</div>
+        </div>
+        <p style="color: #8b949e;">Focus areas: Marketing, Digital Marketing, Marketing Analysis, Economics, and Business Management.</p>
+      </div>
+    </section>
+  </main>
+</div>
+
+</body>
+</html> 

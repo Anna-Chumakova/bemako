@@ -50,7 +50,7 @@ export const projects = [
     seoTitle: 'Enterprise B2B Migration to Astro: Zero Traffic Loss Case Study',
     seoDescription: 'Comprehensive breakdown of a high-scale B2B framework migration to Astro. Learn how we optimized Core Web Vitals and preserved link equity.',
     shortDesc: 'Executed a zero-traffic-loss infrastructure migration...',
-    image: '/case-g-SEO.png',
+    image: '/migration-case.png',
     
     snapshot: [
       { label: 'CLIENT / NICHE', value: 'Enterprise B2B' },
@@ -91,7 +91,7 @@ export const projects = [
     seoTitle: 'Local SEO & Semantic Silo Case Study (Canada) | Be Mako',
     seoDescription: 'How we achieved a 26.2% average CTR and top-10 rankings in a hyper-competitive Canadian market using semantic silos.',
     shortDesc: 'Launched a regional digital asset from scratch...',
-    image: '/case-g-SEO.png',
+    image: '/start-local-bsn.png',
     
     snapshot: [
       { label: 'CLIENT / NICHE', value: 'Services (Canada)' },
