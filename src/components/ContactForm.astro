@@ -5,7 +5,7 @@ const formAction = import.meta.env.PUBLIC_FORM_ACTION_URL || "https://api.web3fo
 const accessKey = import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY || "YOUR_ACCESS_KEY_HERE";
 ---
 
-<section class="contact-section" id="contact">
+<section class="page-content contact-section" id="contact">
   <div class="contact-container">
     
     <!-- Левая колонка: Заголовок и прямые контакты -->
@@ -67,7 +67,7 @@ const accessKey = import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY || "YOUR_ACCESS_KE
           <textarea id="message" name="message" rows="4" required placeholder="Tell me about your website, goals, or current technical challenges..." class="form-textarea"></textarea>
         </div>
 
-        <button type="submit" class="submit-btn" id="submit-btn">
+        <button type="submit" class="mako-btn submit-btn" id="submit-btn">
           <span>Send Message</span>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -86,6 +86,7 @@ const accessKey = import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY || "YOUR_ACCESS_KE
   .contact-section {
     padding: 5rem 0;
     border-top: 1px solid rgba(255, 255, 255, 0.08);
+    scroll-margin-top: calc(var(--header-height, 160px) + 1rem);
   }
 
   .contact-container {
@@ -206,25 +207,17 @@ const accessKey = import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY || "YOUR_ACCESS_KE
 
   /* Кнопка отправки */
   .submit-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    background: var(--mako-cyan, #00f0ff);
-    color: #0b0f19;
-    border: none;
-    padding: 1rem 1.75rem;
+    width: 100%; /* Растягивает кнопку на всю ширину формы */
     border-radius: 4px;
-    font-weight: 700;
-    font-size: 0.95rem;
-    cursor: pointer;
-    transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+    margin-top: 0.5rem;
   }
 
-  .submit-btn:hover {
-    background: #33f3ff;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 20px rgba(0, 240, 255, 0.3);
+  /* Состояние кнопки при отправке (Disabled) */
+  .submit-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none !important;
   }
 
   .form-status {

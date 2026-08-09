@@ -53,9 +53,7 @@ const service = Astro.props.service as any;
                     <span class="meta-value">Yes (Jira/Trello TA)</span>
                 </div>
 
-                <a href="/#contact" class="service-order-button">
-                    Book This Service
-                </a>
+                <a href="/#contact" class="mako-btn service-order-btn"><span>Book This Service <span class="arrow">→</span></span></a>
                 <p class="price-footer-note">*Fully compliant with modern Google core updates.</p>
             </div>
         </div>
@@ -101,7 +99,7 @@ const service = Astro.props.service as any;
         <div class="bottom-cta-box">
             <h3>Need a custom infrastructure approach?</h3>
             <p>If your enterprise platform or dynamic JS app requires a tailored audit setup, let’s schedule a brief tech alignment call.</p>
-            <a href="/#contact" class="cta-secondary-btn">Get Custom Quote</a>
+            <a href="/#contact" class="mako-btn"><span>Get Custom Quote <span class="arrow">→</span></span></a>
         </div>
         </section>
     </div>
@@ -243,25 +241,12 @@ const service = Astro.props.service as any;
         font-weight: 500;
     }
 
-    .service-order-button {
-        display: block;
-        text-align: center;
-        background: var(--mako-cyan);
-        color: var(--mako-bg);
-        text-decoration: none;
-        padding: 1rem;
-        font-family: monospace;
-        text-transform: uppercase;
-        font-weight: 700;
-        letter-spacing: 1px;
-        margin-top: 2rem;
-        border-radius: 2px;
-        transition: all 0.3s ease;
+    .service-order-btn {
+    width: 100%;
+    justify-content: center;
+    margin-top: 2rem;
     }
-    .service-order-button:hover {
-        background: #fff;
-        box-shadow: 0 0 25px rgba(0, 240, 255, 0.3);
-    }
+
 
     .price-footer-note {
         font-size: 0.75rem;
@@ -299,10 +284,7 @@ const service = Astro.props.service as any;
         border-radius: 3px;
         transition: all 0.2s ease;
     }
-    /* .tool-tag:hover {
-        border-color: var(--mako-cyan);
-        color: #fff;
-    } */
+    
 
     .section-divider {
         border: 0;
@@ -334,88 +316,116 @@ const service = Astro.props.service as any;
         gap: 1rem;
     }
 
-    /* Нативный SEO-аккордеон */
-    .seo-accordion {
-        background: rgba(255, 255, 255, 0.01);
-        border: 1px solid rgba(255, 255, 255, 0.03);
-        border-radius: 4px;
-        overflow: hidden;
-        transition: border-color 0.3s ease;
-    }
-    
-    /* Убираем дефолтную стрелочку браузера */
-    .seo-accordion summary::-webkit-details-marker {
-        display: none;
-    }
-    
-    .accordion-header {
-        list-style: none;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 1.5rem 2rem;
-        cursor: pointer;
-        user-select: none;
-    }
-    
-    .accordion-title-text {
-        color: #fff;
-        font-size: 1.15rem;
-        font-weight: 600;
-    }
+   /* Нативный SEO-аккордеон */
+.seo-accordion {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 4px;
+    border-color: rgba(0, 240, 255, 0.3);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
 
-    .accordion-arrow {
-        color: var(--mako-text);
-        opacity: 0.5;
-        transition: transform 0.3s ease;
-        display: flex;
-        align-items: center;
-    }
+/* Ховер-эффект на весь аккордеон */
+.seo-accordion:hover {
+   
+    background: rgba(255, 255, 255, 0.05);
+   
+}
 
-    /* Стили при раскрытом состоянии */
-    .seo-accordion[open] {
-        border-color: rgba(0, 240, 255, 0.15);
-        background: rgba(0, 240, 255, 0.003);
-    }
-    .seo-accordion[open] .accordion-arrow {
-        transform: rotate(180deg);
-        color: var(--mako-cyan);
-        opacity: 1;
-    }
+/* Убираем дефолтную стрелочку браузера */
+.seo-accordion summary::-webkit-details-marker {
+    display: none;
+}
 
-    .accordion-content-body {
-        padding: 0 2rem 2rem;
-        border-top: 1px solid rgba(255, 255, 255, 0.02);
-        animation: fadeSlideIn 0.3s ease-out;
-    }
+.accordion-header {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    cursor: pointer;
+    user-select: none;
+    transition: color 0.3s ease;
+}
 
-    .accordion-items-list {
-        list-style: none;
-        padding: 1.5rem 0 0;
-        margin: 0;
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 1rem;
-    }
+.accordion-title-text {
+    color: #fff;
+    font-size: 1.15rem;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    transition: color 0.3s ease;
+}
 
-    .accordion-items-list li {
-        color: var(--mako-text);
-        font-size: 1rem;
-        position: relative;
-        padding-left: 1.25rem;
-        opacity: 0.85;
-    }
-    /* Маленький бирюзовый квадратик перед пунктами */
-    .accordion-items-list li::before {
-        content: '';
-        position: absolute;
-        left: 0;
-        top: 9px;
-        width: 5px;
-        height: 5px;
-        background: var(--mako-cyan);
-        opacity: 0.7;
-    }
+/* При наведении подсвечиваем заголовок */
+.seo-accordion:hover .accordion-title-text {
+    color: var(--mako-cyan);
+}
+
+.accordion-arrow {
+    color: var(--mako-cyan);
+    opacity: 0.6;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    display: flex;
+    align-items: center;
+}
+
+.seo-accordion:hover .accordion-arrow {
+    opacity: 1;
+}
+
+/* Стили при раскрытом состоянии */
+.seo-accordion[open] {
+    border-color: var(--mako-cyan);
+    background: rgba(0, 240, 255, 0.02);
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.08);
+}
+
+.seo-accordion[open] .accordion-title-text {
+    color: var(--mako-cyan);
+}
+
+.seo-accordion[open] .accordion-arrow {
+    transform: rotate(180deg);
+    opacity: 1;
+}
+
+.accordion-content-body {
+    padding: 0 2rem 2rem;
+    border-top: 1px solid rgba(0, 240, 255, 0.1);
+    animation: fadeSlideIn 0.3s ease-out;
+}
+
+.accordion-items-list {
+    list-style: none;
+    padding: 1.5rem 0 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+}
+
+.accordion-items-list li {
+    color: var(--mako-text);
+    font-size: 1rem;
+    position: relative;
+    padding-left: 1.25rem;
+    opacity: 0.9;
+    line-height: 1.5;
+}
+
+/* Маленький бирюзовый квадратик перед пунктами */
+.accordion-items-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 9px;
+    width: 5px;
+    height: 5px;
+    background: var(--mako-cyan);
+    box-shadow: 0 0 6px var(--mako-cyan);
+}
 
     /* Анимация плавного появления контента */
     @keyframes fadeSlideIn {
@@ -445,21 +455,5 @@ const service = Astro.props.service as any;
         opacity: 0.7;
         line-height: 1.6;
     }
-    .cta-secondary-btn {
-        display: inline-block;
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        color: #fff;
-        text-decoration: none;
-        padding: 0.8rem 2rem;
-        font-family: monospace;
-        font-size: 0.9rem;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        transition: all 0.3s ease;
-    }
-    .cta-secondary-btn:hover {
-        border-color: var(--mako-cyan);
-        color: var(--mako-cyan);
-        box-shadow: 0 0 20px rgba(0, 240, 255, 0.1);
-    }
+    
 </style>

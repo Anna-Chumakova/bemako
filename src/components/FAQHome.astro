@@ -67,18 +67,19 @@ const schemaData = {
 
 <style>
   .faq-section {
-    padding: 4rem 0;
+    padding: 5rem 0;
     border-top: 1px solid rgba(255, 255, 255, 0.08);
   }
 
   .faq-container {
     max-width: 800px;
     margin: 0 auto;
+    padding: 0 1.5rem;
   }
 
   .faq-header {
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: 3.5rem;
   }
 
   .code-accent {
@@ -110,20 +111,25 @@ const schemaData = {
 
   /* Стилизация HTML5 элементов details/summary */
   .faq-item {
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(0, 240, 255, 0.3);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
     overflow: hidden;
-    transition: border-color 0.3s ease, background-color 0.3s ease;
+    transition: all 0.3s ease;
   }
 
+  /* Hover эффект при наведении */
   .faq-item:hover {
-    border-color: rgba(0, 240, 255, 0.25);
+    background: rgba(255, 255, 255, 0.05);
+   
   }
 
+  /* Открытое состояние */
   .faq-item[open] {
-    border-color: rgba(0, 240, 255, 0.4);
+    border-color: var(--mako-cyan, #00f0ff);
     background: rgba(0, 240, 255, 0.02);
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.08);
   }
 
   .faq-question {
@@ -132,28 +138,42 @@ const schemaData = {
     font-size: 1.05rem;
     color: #fff;
     cursor: pointer;
-    list-style: none; /* Убираем стандартную стрелку браузера */
+    list-style: none;
     display: flex;
     justify-content: space-between;
     align-items: center;
     user-select: none;
+    transition: color 0.3s ease;
   }
 
   .faq-question::-webkit-details-marker {
-    display: none; /* Для Safari */
+    display: none;
+  }
+
+  /* Подсветка текста вопроса при наведении и в открытом состоянии */
+  .faq-item:hover .faq-question,
+  .faq-item[open] .faq-question {
+    color: var(--mako-cyan, #00f0ff);
   }
 
   .faq-icon {
     font-family: monospace;
     font-size: 1.25rem;
     color: var(--mako-cyan, #00f0ff);
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, opacity 0.3s ease;
     margin-left: 1rem;
+    opacity: 0.7;
+    flex-shrink: 0;
   }
 
-  /* Анимация иконки при открытии */
+  .faq-item:hover .faq-icon {
+    opacity: 1;
+  }
+
+  /* Поворот плюсика в крестик */
   .faq-item[open] .faq-icon {
-    transform: rotate(45deg); /* Превращает плюс в крестик */
+    transform: rotate(45deg);
+    opacity: 1;
   }
 
   .faq-answer {
@@ -161,11 +181,18 @@ const schemaData = {
     color: #a0aec0;
     font-size: 0.95rem;
     line-height: 1.6;
-    border-top: 1px solid rgba(255, 255, 255, 0.04);
+    border-top: 1px solid rgba(0, 240, 255, 0.1);
+    animation: fadeSlideIn 0.3s ease-out;
   }
 
   .faq-answer p {
     margin: 0;
     padding-top: 0.75rem;
   }
+
+  @keyframes fadeSlideIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
 </style>

@@ -1,0 +1,146 @@
+---
+import Layout from '../layouts/Layout.astro'; // Укажи путь к своему базовому Layout
+---
+
+<Layout title="404: Page Not Found | Be Mako">
+  <main class="notFound-container">
+    <div class="notFound-card">
+      <div class="terminal-header">
+        <span class="terminal-title">system_error.log</span>
+      </div>
+
+      <div class="terminal-body">
+        <p class="code-line"><span class="prompt">></span> HTTP 404 STATUS</p>
+        <p class="code-line error-text"><span class="prompt">></span> ERROR: TARGET_URL_NOT_FOUND</p>
+        <p class="code-line"><span class="prompt">></span> The page you are looking for has been moved, deleted, or never existed in this index.</p>
+      </div>
+
+      <h1 class="glitch-title">404</h1>
+      <p class="sub-text">Crawl Error: Crawled — currently not indexed</p>
+
+      <div class="action-wrapper">
+        <a href="/" class="primary-btn">
+          <span>&larr; Return to Safety (Home)</span>
+        </a>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .notFound-container {
+    min-height: 85vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+    box-sizing: border-box;
+  }
+
+  .notFound-card {
+    width: 100%;
+    max-width: 580px;
+    background: rgba(9, 13, 18, 0.75);
+    border: 1px solid rgba(0, 240, 255, 0.2);
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(0, 240, 255, 0.05);
+    backdrop-filter: blur(12px);
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+
+  /* Шапка терминала */
+  .terminal-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    margin-bottom: 1.5rem;
+  }
+
+
+  
+
+  .terminal-title {
+    font-family: monospace;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.4);
+    margin-left: auto;
+  }
+
+  /* Лог ошибки */
+  .terminal-body {
+    text-align: left;
+    font-family: monospace;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 1rem;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    margin-bottom: 2rem;
+  }
+
+  .code-line {
+    margin: 0.25rem 0;
+    color: #c9d1d9;
+  }
+
+  .prompt {
+    color: var(--mako-cyan, #00f0ff);
+    font-weight: bold;
+  }
+
+  .error-text {
+    color: #ff6b6b;
+  }
+
+  /* Заголовок 404 */
+  .glitch-title {
+    font-size: 5rem;
+    font-weight: 900;
+    margin: 0;
+    line-height: 1;
+    letter-spacing: -2px;
+    color: #ffffff;
+    text-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
+  }
+
+  .sub-text {
+    color: #94a3b8;
+    font-size: 0.95rem;
+    margin-top: 0.5rem;
+    margin-bottom: 2rem;
+  }
+
+  /* Кнопка */
+  .action-wrapper {
+    display: flex;
+    justify-content: center;
+  }
+
+  .primary-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.8rem 1.6rem;
+    background: transparent;
+    color: var(--mako-cyan, #00f0ff);
+    border: 1px solid var(--mako-cyan, #00f0ff);
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.1);
+  }
+
+  .primary-btn:hover {
+    background: var(--mako-cyan, #00f0ff);
+    color: #05080a;
+    box-shadow: 0 0 25px rgba(0, 240, 255, 0.4);
+    transform: translateY(-2px);
+  }
+</style>

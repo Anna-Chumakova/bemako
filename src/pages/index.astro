@@ -3,10 +3,10 @@ import Layout from '../layouts/Layout.astro';
 import About from '../components/About.astro';
 import Work from '../components/Portfolio.astro';
 import Services from '../components/Services.astro';
-import Contact from '../components/Contact.astro';
 import GoogleReviews from '../components/GoogleReviews.astro';
 import ContactForm from '../components/ContactForm.astro';
 import FAQHome from '../components/FAQHome.astro';
+import WhyChooseUs from '../components/WhyChooseUs.astro';
 ---
 
 <Layout title="Be Mako | Technical SEO & Data Automation" description='give your business a permanent competitive advantage'>
@@ -36,10 +36,11 @@ import FAQHome from '../components/FAQHome.astro';
         <section class="page-content"><About /></section>
         <section class="page-content"><Work /></section>
         <section class="page-content"><Services /></section>
+        <section class="page-content"><WhyChooseUs /></section>
         <section class="page-content"><GoogleReviews /></section>
         <section class="page-content"><FAQHome /></section>
         <section class="page-content"><ContactForm /></section>
-        <section class="page-content"><Contact /></section>
+        
         
 
     </div> 
@@ -152,72 +153,4 @@ import FAQHome from '../components/FAQHome.astro';
     /* z-index: 2; */
     }
 
-    /* Стилизация кнопки */
-    .mako-btn {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem 2.5rem;
-    margin-top: 2.5rem;
-    color: #0B1117; /* Темный текст на неоновом фоне смотрится максимально контрастно и дорого */
-    background: #00eeff9e;
-    font-size: 0.9rem;
-    letter-spacing: 2px;
-    text-decoration: none !important;
-    text-transform: uppercase;
-    font-weight: 700;
-    border-radius: 4px;
-    border: 1px solid #00F0FF;
-    overflow: hidden;
-    transition: all 0.3s ease;
-    
-    /* Базовый неоновый теневой шлейф */
-    box-shadow: 0 0 15px rgba(0, 240, 255, 0.35), 
-                0 0 30px rgba(0, 240, 255, 0.1);
-    }
-
-    /* Текст кнопки приподнимаем над эффектами */
-    .mako-btn span:not(.btn-glow) {
-    position: relative;
-    z-index: 2;
-    }
-
-    /* Внутреннее свечение (блик при наведении) */
-    .mako-btn::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(255, 255, 255, 0.4),
-        transparent
-    );
-    transition: 0.5s;
-    z-index: 1;
-    }
-
-    /* Эффект при наведении (Hover) */
-    .mako-btn:hover {
-    color: #fff;
-    background: transparent; /* Переключаемся на контурный неон */
-    box-shadow: 0 0 20px rgba(0, 240, 255, 0.6), 
-                0 0 40px rgba(0, 240, 255, 0.3),
-                inset 0 0 15px rgba(0, 240, 255, 0.4);
-    text-shadow: 0 0 5px rgba(0, 240, 255, 0.5);
-    }
-
-    .mako-btn:hover::before {
-    left: 100%;
-    }
-
-    /* Активное состояние (клик) */
-    .mako-btn:active {
-    transform: scale(0.98);
-    box-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
-    }
 </style>

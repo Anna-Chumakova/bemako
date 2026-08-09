@@ -1,471 +1,436 @@
 ---
-import { Image } from 'astro:assets';
-import profilePhoto from '../assets/my-photo2.jpg';
+import { Image } from "astro:assets";
+import profilePhoto from "../assets/my-photo2.webp";
 
 // 1. Динамический массив сертификатов и дипломов
 const credentials = [
   {
-    id: 'google-ads-creative',
-    title: 'Google Ads Creative Certification',
-    issuer: 'Google Skillshop',
-    year: '2025',
-    type: 'Certification',
-    description: 'Validated expertise in designing high-performing ad creatives, data-driven creative strategies across Search, Video, and Display campaigns, and creative A/B testing.',
-    verifyUrl: 'https://skillshop.credential.net/c1fca9a9-0b1d-49ba-9c4f-62859d647f54#acc.yA1QnMCR',
-    image: '/certificates/google-creative.jpg'
+    id: "google-ads-creative",
+    title: "Google Ads Creative Certification",
+    issuer: "Google Skillshop",
+    year: "2025",
+    type: "Certification",
+    description:
+      "Validated expertise in designing high-performing ad creatives, data-driven creative strategies across Search, Video, and Display campaigns, and creative A/B testing.",
+    verifyUrl:
+      "https://skillshop.credential.net/c1fca9a9-0b1d-49ba-9c4f-62859d647f54#acc.yA1QnMCR",
+    image: "/certificates/google-creative.jpg",
   },
   {
-    id: 'degree-marketing',
+    id: "degree-marketing",
     title: "Bachelor's Degree in Marketing",
-    issuer: 'Donetsk National University of Economics and Trade',
-    year: '2010',
-    type: 'Degree',
-    description: 'Specialization in strategic marketing, market analysis, consumer behavior, and brand management.',
-    image: '/certificates/marketing-degree.jpg'
+    issuer: "Donetsk National University of Economics and Trade",
+    year: "2010",
+    type: "Degree",
+    description:
+      "Specialization in strategic marketing, market analysis, consumer behavior, and brand management.",
+    image: "/certificates/marketing-degree.jpg",
   },
   {
-    id: 'seo-cert-1',
-    title: 'Technical SEO Certification',
-    issuer: 'Projector Institute',
-    year: '2023',
-    type: 'Certification',
-    description: 'In-depth specialization in site architecture, semantic core building, Core Web Vitals optimization, crawling budget allocation, and indexing strategies.',
-    image: '/certificates/seo-cert-1.jpg'
+    id: "seo-cert-1",
+    title: "Technical SEO Certification",
+    issuer: "Projector Institute",
+    year: "2023",
+    type: "Certification",
+    description:
+      "In-depth specialization in site architecture, semantic core building, Core Web Vitals optimization, crawling budget allocation, and indexing strategies.",
+    image: "/certificates/seo-cert-1.jpg",
   },
   {
-    id: 'fullstack-dev',
-    title: 'Full Stack Web Developer Certification',
-    issuer: 'GoIT IT School',
-    year: '2023',
-    type: 'Certification',
-    description: 'Full Stack Web Development: HTML5/CSS3, JavaScript, React, Node.js, automated scripts, and custom web engineering.',
-    image: '/certificates/fullstack-cert.jpg'
-  }
+    id: "fullstack-dev",
+    title: "Full Stack Web Developer Certification",
+    issuer: "GoIT IT School",
+    year: "2023",
+    type: "Certification",
+    description:
+      "Full Stack Web Development: HTML5/CSS3, JavaScript, React, Node.js, automated scripts, and custom web engineering.",
+    image: "/certificates/fullstack-cert.jpg",
+  },
 ];
 
 // Автоматически формируем микроразметку для schema.org
-const jsonLdCredentials = credentials.map(c => ({
+const jsonLdCredentials = credentials.map((c) => ({
   "@type": "EducationalOccupationalCredential",
-  "name": c.title,
-  "credentialCategory": c.type,
-  "recognizedBy": {
+  name: c.title,
+  credentialCategory: c.type,
+  recognizedBy: {
     "@type": "Organization",
-    "name": c.issuer
+    name: c.issuer,
   },
-  ...(c.verifyUrl && { "url": c.verifyUrl })
+  ...(c.verifyUrl && { url: c.verifyUrl }),
 }));
 ---
 
 <!-- JSON-LD Схема для поисковых роботов с сертификатами и соцсетями -->
-<script type="application/ld+json" set:html={JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Anna Chumakova",
-  "alternateName": "Anya SEO",
-  "jobTitle": "Senior SEO Specialist & Digital Marketer",
-  "worksFor": {
-    "@type": "Organization",
-    "name": "Be Mako Studio",
-    "url": "https://be-mako.com"
-  },
-  "description": "Senior SEO Specialist specializing in Programmatic SEO, Technical SEO, AI SEO (GEO/AEO), and Full-Stack Web Development.",
-  "url": "https://be-mako.com",
-  "knowsAbout": [
-    "Technical SEO",
-    "Search Engine Optimization",
-    "Programmatic SEO",
-    "AI SEO / GEO / AEO",
-    "Astro Framework",
-    "Node.js Automation",
-    "Web Analytics"
-  ],
-  "hasCredential": jsonLdCredentials,
-  "sameAs": [
-    "https://github.com/Anna-Chumakova",
-    "https://www.linkedin.com/in/anna-chumakova-profil/",
-    "https://t.me/Anna_webmaster_bg"
-  ]
-})} />
+<script
+  type="application/ld+json"
+  set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Anna Chumakova",
+    alternateName: "Anya SEO",
+    jobTitle: "Senior SEO Specialist & Digital Marketer",
+    worksFor: {
+      "@type": "Organization",
+      name: "Be Mako Studio",
+      url: "https://be-mako.com",
+    },
+    description:
+      "Senior SEO Specialist specializing in Programmatic SEO, Technical SEO, AI SEO (GEO/AEO), and Full-Stack Web Development.",
+    url: "https://be-mako.com",
+    knowsAbout: [
+      "Technical SEO",
+      "Search Engine Optimization",
+      "Programmatic SEO",
+      "AI SEO / GEO / AEO",
+      "Astro Framework",
+      "Node.js Automation",
+      "Web Analytics",
+    ],
+    hasCredential: jsonLdCredentials,
+    sameAs: [
+      "https://github.com/Anna-Chumakova",
+      "https://www.linkedin.com/in/anna-chumakova-profil/",
+      "https://t.me/Anna_webmaster_bg",
+    ],
+  })}
+/>
 
 <section id="about" class="page-content about-section">
-    <div class="code-accent">// WHO I AM</div>
-    <div class="about-grid">
-        
-        <!-- Текстовая колонка -->
-        <div class="about-content">
-            <h2>Senior SEO Specialist & Technical Engineer</h2>
-            <p>
-                Hi, I'm Anna. I bridge the gap between heavy automation, clean code architectures, and aggressive organic growth. 
-                While traditional SEOs rely only on third-party platforms, I build custom automated pipelines using <strong>Node.js</strong> and <strong>AI</strong> models to capture scale that others cannot reach.
-            </p>
-            <p>
-                Whether it’s executing a zero-traffic-loss enterprise migration to modern frameworks like <strong>Astro</strong> or launching global programmatic SEO infrastructure from scratch, my goal is simple: engineering maximum search visibility at peak technical performance.
-            </p>
+  <div class="code-accent">// WHO I AM</div>
+  <div class="about-grid">
+    <!-- Текстовая колонка -->
+    <div class="about-content">
+      <h2>Senior SEO Specialist & Technical Engineer</h2>
+      <p>
+        Hi, I'm Anna. I bridge the gap between heavy automation, clean code
+        architectures, and aggressive organic growth. While traditional SEOs
+        rely only on third-party platforms, I build custom automated pipelines
+        using <strong>Node.js</strong> and <strong>AI</strong> models to capture scale
+        that others cannot reach.
+      </p>
+      <p>
+        Whether it’s executing a zero-traffic-loss enterprise migration to
+        modern frameworks like <strong>Astro</strong> or launching global programmatic
+        SEO infrastructure from scratch, my goal is simple: engineering maximum search
+        visibility at peak technical performance.
+      </p>
 
-            <!-- Ссылка на страницу резюме -->
-            <div class="resume-cta-wrapper">
-                <a href="/resume" class="resume-button" target="_blank" rel="noopener noreferrer">
-                    <!-- <span class="btn-icon"></span> -->
-                    <span>View Full Resume</span>
-                    <span class="arrow">↗</span>
-                </a>
-            </div>
-        </div>
-
-        <!-- Колонка с фото -->
-        <div class="about-image-wrapper">
-            <div class="image-frame">
-                <Image 
-                    src={profilePhoto} 
-                    alt="Anna Chumakova — Senior SEO Specialist and Founder of Be Mako Studio" 
-                    width={380}
-                    height={380}
-                    loading="eager" 
-                    class="profile-img"
-                />
-            </div>
-        </div>
-
-        <!-- Блок с сертификатами -->
-        <div class="credentials-block">
-            <h3 class="credentials-title">// EDUCATION & CERTIFICATIONS</h3>
-            
-            <div class="accordion-list">
-                {credentials.map((item) => (
-                    <details class="cred-item">
-                        <summary class="cred-summary">
-                            <div class="cred-header-text">
-                                <span class="cred-name">{item.title}</span>
-                                <span class="cred-meta">{item.issuer} • {item.year}</span>
-                            </div>
-                            <span class="accordion-icon">
-                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                                    <path d="M6 9l6 6 6-6"/>
-                                </svg>
-                            </span>
-                        </summary>
-                        
-                        <div class="cred-body">
-                            <p class="cred-desc">{item.description}</p>
-                            
-                            {item.verifyUrl && (
-                                <div class="verify-link-wrapper">
-                                    <a href={item.verifyUrl} target="_blank" rel="noopener noreferrer" class="verify-credential-link">
-                                        Verify Credential ↗
-                                    </a>
-                                </div>
-                            )}
-
-                            {item.image && (
-                                <div class="cred-image-wrapper">
-                                    <img src={item.image} alt={`${item.title} - ${item.issuer}`} loading="lazy" />
-                                </div>
-                            )}
-                        </div>
-                    </details>
-                ))}
-            </div>
-        </div>
-
+      <!-- Кнопка резюме в стиле mako-btn -->
+      <div class="resume-cta-wrapper">
+        <a
+          href="/resume"
+          class="mako-btn"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span>View Full Resume <span class="arrow">↗</span></span>
+        </a>
+      </div>
     </div>
+
+    <!-- Колонка с фото -->
+    <div class="about-image-wrapper">
+      <div class="image-frame">
+        <Image
+          src="/my-photo.png"
+          alt="Anna Chumakova — Senior SEO Specialist and Founder of Be Mako Studio"
+          width={400}
+          height={520}
+          loading="eager"
+          class="profile-img"
+        />
+      </div>
+    </div>
+
+    <!-- Блок с сертификатами -->
+    <div class="credentials-block">
+      <h3 class="credentials-title">// EDUCATION & CERTIFICATIONS</h3>
+
+      <div class="accordion-list">
+        {
+          credentials.map((item) => (
+            <details class="cred-item">
+              <summary class="cred-summary">
+                <div class="cred-header-text">
+                  <span class="cred-name">{item.title}</span>
+                  <span class="cred-meta">
+                    {item.issuer} • {item.year}
+                  </span>
+                </div>
+                <span class="accordion-icon">
+                  <svg
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                  >
+                    <path d="M6 9l6 6 6-6" />
+                  </svg>
+                </span>
+              </summary>
+
+              <div class="cred-body">
+                <p class="cred-desc">{item.description}</p>
+
+                {item.verifyUrl && (
+                  <div class="verify-link-wrapper">
+                    <a
+                      href={item.verifyUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="mako-btn mako-btn-sm"
+                    >
+                      <span>Verify Credential ↗</span>
+                    </a>
+                  </div>
+                )}
+
+                {item.image && (
+                  <div class="cred-image-wrapper">
+                    <img
+                      src={item.image}
+                      alt={`${item.title} - ${item.issuer}`}
+                      loading="lazy"
+                    />
+                  </div>
+                )}
+              </div>
+            </details>
+          ))
+        }
+      </div>
+    </div>
+  </div>
 </section>
 
 <style>
-    .about-section {
-        padding: var(--section-gap, 4rem) 0 2rem;
-    }
+  .about-section {
+    padding: var(--section-gap, 4rem) 0 2rem;
+  }
 
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .code-accent {
+    font-family: monospace;
+    color: var(--mako-cyan, #00f0ff);
+    letter-spacing: 2px;
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+  }
+
+  h2 {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    color: #fff;
+    margin: 0 0 1.5rem;
+    font-weight: 800;
+  }
+
+  p {
+    font-size: clamp(0.95rem, 1.5vw, 1.05rem);
+    line-height: 1.7;
+    color: var(--mako-text, #a0aec0);
+    margin-bottom: 1.5rem;
+  }
+
+  strong {
+    color: #fff;
+    font-weight: 600;
+  }
+
+  .resume-cta-wrapper {
+    margin-top: 1.8rem;
+    margin-bottom: 1rem;
+  }
+
+  /* --- СЕРТИФИКАТЫ --- */
+  .credentials-block {
+    grid-column: 1 / -1;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .credentials-title {
+    font-family: monospace;
+    font-size: 0.85rem;
+    color: var(--mako-cyan, #00f0ff);
+    letter-spacing: 1.5px;
+    margin-bottom: 1.2rem;
+  }
+
+  .accordion-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    align-items: flex-start;
+  }
+
+  .cred-item {
+    border: 1px solid rgba(0, 240, 255, 0.3);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+   
+    border-radius: 4px;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    flex: 1 1 100%;
+    box-sizing: border-box;
+  }
+
+  .cred-item:hover {
+    border-color: rgba(0, 240, 255, 0.2);
+    border-left-color: var(--mako-cyan, #00f0ff);
+    background: rgba(0, 240, 255, 0.02);
+    transform: translateY(-2px);
+  }
+
+  .cred-item[open] {
+    border-color: rgba(0, 240, 255, 0.3);
+    border-left-color: var(--mako-cyan, #00f0ff);
+    background: rgba(0, 240, 255, 0.03);
+  }
+
+  .cred-summary {
+    padding: 1.1rem 1.25rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+    user-select: none;
+  }
+
+  .cred-summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .cred-header-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .cred-name {
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: color 0.2s ease;
+  }
+
+  .cred-item:hover .cred-name {
+    color: var(--mako-cyan, #00f0ff);
+  }
+
+  .cred-meta {
+    font-family: monospace;
+    font-size: 0.75rem;
+    color: #8a99a8;
+  }
+
+  .accordion-icon {
+    color: var(--mako-cyan, #00f0ff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+  }
+
+  .cred-item[open] .accordion-icon {
+    transform: rotate(180deg);
+  }
+
+  .cred-body {
+    padding: 0 1.25rem 1.25rem 1.25rem;
+    border-top: 1px dashed rgba(255, 255, 255, 0.05);
+    margin-top: 0.5rem;
+  }
+
+  .cred-desc {
+    font-size: 0.88rem;
+    line-height: 1.5;
+    color: #a0aec0;
+    margin: 0.75rem 0 0.75rem;
+  }
+
+  .verify-link-wrapper {
+    margin-bottom: 0.8rem;
+  }
+
+  .cred-image-wrapper {
+    margin-top: 0.8rem;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .cred-image-wrapper img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .about-image-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .image-frame {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    border-radius: 12px;
+    padding: 8px;
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 240, 255, 0.3);
+    box-shadow: 0 20px 40px -10px rgba(0, 240, 255, 0.15);
+    transition: all 0.3s ease;
+  }
+
+  .profile-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 8px;
+    filter: contrast(90%);
+    transition:
+      filter 0.3s ease,
+      transform 0.5s ease;
+  }
+
+  @media (max-width: 992px) {
     .about-grid {
-        display: grid;
-        grid-template-columns: 1.2fr 0.8fr;
-        gap: 3rem;
-        align-items: start;
-    }
-
-    .code-accent {
-        font-family: monospace;
-        color: var(--mako-cyan, #00f0ff);
-        letter-spacing: 2px;
-        font-size: 0.85rem;
-        margin-bottom: 1rem;
-    }
-
-    h2 {
-        font-size: clamp(1.75rem, 4vw, 2.5rem);
-        color: #fff;
-        margin: 0 0 1.5rem;
-        font-weight: 800;
-    }
-
-    p {
-        font-size: clamp(0.95rem, 1.5vw, 1.05rem);
-        line-height: 1.7;
-        color: var(--mako-text, #a0aec0);
-        margin-bottom: 1.5rem;
-    }
-
-    strong {
-        color: #fff;
-        font-weight: 600;
-    }
-
-    /* --- СТИЛИ КНОПКИ РЕЗЮМЕ --- */
-    .resume-cta-wrapper {
-        margin-top: 1.8rem;
-        margin-bottom: 1rem;
-    }
-
-    /* Явно указываем контекст родителю, чтобы Astro точно привязал data-astro-cid */
-    .resume-cta-wrapper .resume-button,
-    .resume-button {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.6rem;
-        padding: 0.75rem 1.4rem;
-        background: rgba(0, 240, 255, 0.05);
-        border: 1px solid var(--mako-cyan, #00f0ff);
-        color: var(--mako-cyan, #00f0ff) !important;
-        font-family: monospace;
-        font-size: 0.9rem;
-        font-weight: 600;
-        border-radius: 4px;
-        text-decoration: none;
-        letter-spacing: 0.5px;
-        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        box-shadow: 0 0 15px rgba(0, 240, 255, 0.05);
-    }
-
-    .resume-cta-wrapper .resume-button:hover,
-    .resume-button:hover {
-        background: var(--mako-cyan, #00f0ff);
-        color: #0b0f19 !important;
-        box-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
-        transform: translateY(-2px);
-    }
-
-    .resume-button .arrow {
-        display: inline-block;
-        transition: transform 0.2s ease;
-    }
-
-    .resume-button:hover .arrow {
-        transform: translate(2px, -2px);
-    }
-
-    /* --- СЕРТИФИКАТЫ --- */
-    .credentials-block {
-        grid-column: 1 / -1;
-        margin-top: 1.5rem;
-        padding-top: 1.5rem;
-        border-top: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    .credentials-title {
-        font-family: monospace;
-        font-size: 0.85rem;
-        color: var(--mako-cyan, #00f0ff);
-        letter-spacing: 1.5px;
-        margin-bottom: 1.2rem;
-    }
-
-    .accordion-list {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 1.25rem;
-        align-items: flex-start;
-    }
-
-    .cred-item {
-        background: rgba(255, 255, 255, 0.02);
-        border: 1px solid rgba(255, 255, 255, 0.06);
-        border-left: 3px solid transparent;
-        border-radius: 4px;
-        overflow: hidden;
-        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        flex: 1 1 100%;
-        box-sizing: border-box;
-    }
-
-    .cred-item:hover {
-        border-color: rgba(0, 240, 255, 0.2);
-        border-left-color: var(--mako-cyan, #00f0ff);
-        background: rgba(0, 240, 255, 0.02);
-        transform: translateY(-2px);
-    }
-
-    .cred-item[open] {
-        border-color: rgba(0, 240, 255, 0.3);
-        border-left-color: var(--mako-cyan, #00f0ff);
-        background: rgba(0, 240, 255, 0.03);
-    }
-
-    .cred-summary {
-        padding: 1.1rem 1.25rem;
-        cursor: pointer;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        list-style: none;
-        user-select: none;
-    }
-
-    .cred-summary::-webkit-details-marker {
-        display: none;
-    }
-
-    .cred-header-text {
-        display: flex;
-        flex-direction: column;
-        gap: 0.25rem;
-    }
-
-    .cred-name {
-        color: #fff;
-        font-weight: 600;
-        font-size: 0.95rem;
-        transition: color 0.2s ease;
-    }
-
-    .cred-item:hover .cred-name {
-        color: var(--mako-cyan, #00f0ff);
-    }
-
-    .cred-meta {
-        font-family: monospace;
-        font-size: 0.75rem;
-        color: #8a99a8;
-    }
-
-    .accordion-icon {
-        color: var(--mako-cyan, #00f0ff);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: transform 0.3s ease;
-    }
-
-    .cred-item[open] .accordion-icon {
-        transform: rotate(180deg);
-    }
-
-    .cred-body {
-        padding: 0 1.25rem 1.25rem 1.25rem;
-        border-top: 1px dashed rgba(255, 255, 255, 0.05);
-        margin-top: 0.5rem;
-    }
-
-    .cred-desc {
-        font-size: 0.88rem;
-        line-height: 1.5;
-        color: #a0aec0;
-        margin: 0.75rem 0 0.5rem;
-    }
-
-    .verify-link-wrapper {
-        margin-bottom: 0.8rem;
-    }
-
-    .verify-credential-link {
-        font-family: monospace;
-        font-size: 0.8rem;
-        color: var(--mako-cyan, #00f0ff);
-        text-decoration: none;
-        display: inline-block;
-        font-weight: 600;
-        transition: opacity 0.2s ease;
-    }
-
-    .verify-credential-link:hover {
-        opacity: 0.8;
-        text-decoration: underline;
-    }
-
-    .cred-image-wrapper {
-        width: 100%;
-        max-width: 100%;
-        border-radius: 4px;
-        overflow: hidden;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        background: #000;
-        margin-top: 0.5rem;
-    }
-
-    .cred-image-wrapper img {
-        width: 100%;
-        height: auto;
-        display: block;
-        object-fit: contain;
+      grid-template-columns: 1fr;
+      gap: 2rem;
     }
 
     .about-image-wrapper {
-        display: flex;
-        justify-content: center;
-        width: 100%;
-    }
-    
-    .image-frame {
-        position: relative;
-        border: 1px solid rgba(0, 240, 255, 0.2);
-        padding: 10px;
-        background: rgba(255, 255, 255, 0.01);
-        border-radius: 4px;
-        width: 100%;
-        max-width: 400px;
-        aspect-ratio: 1 / 1;
-        box-sizing: border-box;
-    }
-    
-    .image-frame::before {
-        content: '';
-        position: absolute;
-        top: -1px;
-        left: -1px;
-        width: 20px;
-        height: 20px;
-        border-top: 2px solid var(--mako-cyan, #00f0ff);
-        border-left: 2px solid var(--mako-cyan, #00f0ff);
-    }
-    
-    .profile-img {
-        display: block;
-        width: 100%;
-        height: 100%;
-        max-width: 380px;
-        aspect-ratio: 1 / 1;
-        object-fit: cover;
-        border-radius: 2px;
-        filter: grayscale(20%) contrast(110%);
-        transition: filter 0.3s ease;
-    }
-    
-    .image-frame:hover .profile-img {
-        filter: grayscale(0%) contrast(100%);
+      order: 1;
     }
 
-    @media (max-width: 992px) {
-        .about-grid {
-            grid-template-columns: 1fr;
-            gap: 2rem;
-        }
-
-        .about-image-wrapper {
-            order: 1;
-        }
-
-        .about-content {
-            order: 2;
-        }
-
-        .credentials-block {
-            order: 3;
-            margin-top: 1rem;
-        }
+    .about-content {
+      order: 2;
     }
 
-    @media (min-width: 1024px) {
-        .cred-item {
-            flex: 1 1 calc(50% - 1.25rem);
-            min-width: 280px;
-        }
+    .credentials-block {
+      order: 3;
+      margin-top: 1rem;
     }
+  }
+
+  @media (min-width: 1024px) {
+    .cred-item {
+      flex: 1 1 calc(50% - 1.25rem);
+      min-width: 280px;
+    }
+  }
 </style>
