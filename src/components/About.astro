@@ -1,6 +1,6 @@
 ---
 import { Image } from "astro:assets";
-import profilePhoto from "../assets/my-photo2.webp";
+import profilePhoto from "../assets/my-photo.webp";
 
 // 1. Динамический массив сертификатов и дипломов
 const credentials = [
@@ -101,20 +101,15 @@ const jsonLdCredentials = credentials.map((c) => ({
   <div class="about-grid">
     <!-- Текстовая колонка -->
     <div class="about-content">
-      <h2>Senior SEO Specialist & Technical Engineer</h2>
-      <p>
-        Hi, I'm Anna. I bridge the gap between heavy automation, clean code
-        architectures, and aggressive organic growth. While traditional SEOs
-        rely only on third-party platforms, I build custom automated pipelines
-        using <strong>Node.js</strong> and <strong>AI</strong> models to capture scale
-        that others cannot reach.
+      <h2>Technical Precision Meets AI-Driven Search Growth</h2>
+      <p class="text">
+I help founders, marketing teams, and digital agencies fix complex technical bottlenecks and secure top visibility across search and AI answer engines.      </p>
       </p>
-      <p>
-        Whether it’s executing a zero-traffic-loss enterprise migration to
-        modern frameworks like <strong>Astro</strong> or launching global programmatic
-        SEO infrastructure from scratch, my goal is simple: engineering maximum search
-        visibility at peak technical performance.
-      </p>
+      <ul class="text">
+        <li>Deep Technical Diagnostics: JS rendering, crawl budget leaks, server parameters, and developer-ready action plans.</li>
+        <li>AI Engine Optimization (AIEO): Entity architecture and authority strategies for citations in Perplexity, SearchGPT, and Gemini.</li>
+        <li>Scalable Growth Frameworks: Site architecture, structured data, and content strategies tailored for SaaS, e-commerce, and local brands.</li>
+      </ul>
 
       <!-- Кнопка резюме в стиле mako-btn -->
       <div class="resume-cta-wrapper">
@@ -133,11 +128,12 @@ const jsonLdCredentials = credentials.map((c) => ({
     <div class="about-image-wrapper">
       <div class="image-frame">
         <Image
-          src="/my-photo.png"
+          src={profilePhoto}
           alt="Anna Chumakova — Senior SEO Specialist and Founder of Be Mako Studio"
           width={400}
           height={520}
           loading="eager"
+          fetchpriority="high"
           class="profile-img"
         />
       </div>
@@ -233,7 +229,7 @@ const jsonLdCredentials = credentials.map((c) => ({
     font-weight: 800;
   }
 
-  p {
+  .text  {
     font-size: clamp(0.95rem, 1.5vw, 1.05rem);
     line-height: 1.7;
     color: var(--mako-text, #a0aec0);

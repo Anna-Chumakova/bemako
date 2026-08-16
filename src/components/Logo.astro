@@ -120,5 +120,25 @@ path {
   50% { transform: rotateY(0deg) rotateZ(-5deg) rotateX(-5deg); }
   75% { transform: rotateY(-15deg) rotateZ(3deg) rotateX(5deg); }
 }
+
+@media (max-width: 768px) {
+  /* Отключаем непрерывный 3D-наклон и тяжелый пульс на мобильных */
+  .a-wrapper svg,
+  .logo-container path {
+    animation: none !important;
+  }
+
+  /* Заменяем динамические тени на статичную облегченную CSS-тень */
+  .shark-svg {
+    filter: drop-shadow(0 0 2px rgba(0, 243, 255, 0.3));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .a-wrapper svg,
+  .logo-container path {
+    animation: none;
+  }
+}
 </style>
 
